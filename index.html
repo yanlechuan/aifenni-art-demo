@@ -1,0 +1,3268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>爱分你 · 把一幅画穿出去｜课程概念</title>
+<style>
+  :root{
+    --paper:#F4EDE2;
+    --surface:#FBF7F0;
+    --surface-2:#F7F0E5;
+    --ink:#1F2940;
+    --ink-soft:#37425B;
+    --muted:#67645D;
+    --line:#DCD2C4;
+    --line-strong:#C8BBA9;
+    --indigo:#26365B;
+    --indigo-deep:#192641;
+    --coral:#D96B55;
+    --coral-deep:#A94733;
+    --coral-soft:#F1D4C8;
+    --ochre:#DDB169;
+    --sage:#7C907F;
+    --warn:#805B1A;
+    --warn-bg:#F7EDD8;
+    --ok:#34624A;
+    --white:#FFFDF9;
+    --sans:"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+    --serif:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong","SimSun",Georgia,serif;
+    --mono:"Cascadia Code","SFMono-Regular",Consolas,"Liberation Mono",monospace;
+    --shadow:0 24px 70px -34px rgba(26,36,58,.45);
+    --radius:8px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    min-width:300px;
+    color:var(--ink);
+    background:
+      radial-gradient(900px 620px at 92% 3%, rgba(217,107,85,.13), transparent 66%),
+      radial-gradient(760px 520px at 3% 82%, rgba(38,54,91,.075), transparent 72%),
+      var(--paper);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:100;
+    pointer-events:none;
+    opacity:.055;
+    background-image:radial-gradient(rgba(31,41,64,.65) .55px, transparent .55px);
+    background-size:3px 3px;
+    mix-blend-mode:multiply;
+  }
+  button,input{font:inherit;}
+  button{color:inherit;}
+  button:not(:disabled){cursor:pointer;}
+  h1,h2,h3,p,ul,ol,figure{margin:0;}
+  ul,ol{padding:0;list-style:none;}
+  svg{display:block;}
+  a{color:inherit;}
+  [hidden]{display:none !important;}
+  ::selection{background:var(--coral);color:#fff;}
+  :focus-visible{outline:3px solid var(--coral-deep);outline-offset:3px;}
+  .sr-only{
+    position:absolute !important;
+    width:1px;height:1px;
+    padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);
+    white-space:nowrap;border:0;
+  }
+  .skip-link{
+    position:fixed;left:16px;top:12px;z-index:3000;
+    transform:translateY(-180%);
+    padding:10px 14px;border-radius:6px;
+    background:var(--indigo);color:var(--white);
+    font-size:13px;text-decoration:none;
+  }
+  .skip-link:focus{transform:translateY(0);}
+
+  /* ---------- page shell ---------- */
+  .site-header{
+    max-width:1220px;
+    margin:0 auto;
+    padding:26px 40px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;min-width:0;}
+  .brand-mark{
+    width:36px;height:36px;flex:0 0 36px;
+    display:grid;place-items:center;
+    border:1px solid rgba(169,71,51,.32);
+    border-radius:50%;
+    background:rgba(255,253,249,.6);
+    color:var(--coral-deep);
+  }
+  .brand-mark svg{width:19px;height:19px;}
+  .brand-name{
+    font-family:var(--serif);
+    font-size:20px;line-height:1.1;
+    letter-spacing:.08em;
+    font-weight:600;
+  }
+  .brand-sub{
+    margin-top:3px;
+    color:var(--muted);
+    font-size:10px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+  }
+  .header-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
+  .pill{
+    display:inline-flex;align-items:center;gap:7px;
+    min-height:30px;padding:0 11px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    background:rgba(255,253,249,.55);
+    color:var(--ink-soft);
+    font-size:11px;
+    white-space:nowrap;
+  }
+  .pill-dot{width:5px;height:5px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 3px rgba(217,107,85,.13);}
+  .header-note{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.02em;}
+
+  .workspace{
+    max-width:1220px;
+    margin:0 auto;
+    padding:48px 40px 62px;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(398px,440px);
+    grid-template-areas:
+      "intro prototype"
+      "notes prototype";
+    column-gap:72px;
+    row-gap:48px;
+    align-items:start;
+  }
+  .intro{grid-area:intro;max-width:610px;padding-top:8px;}
+  .prototype{grid-area:prototype;min-width:0;}
+  .notes{grid-area:notes;max-width:610px;}
+
+  .eyebrow,.screen-eyebrow{
+    display:flex;align-items:center;gap:9px;
+    color:var(--coral-deep);
+    font-family:var(--mono);
+    font-size:10px;
+    line-height:1.5;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+  }
+  .eyebrow::before{
+    content:"";width:24px;height:1px;background:var(--coral);
+    flex:0 0 auto;
+  }
+  .hero-title{
+    margin:16px 0 20px;
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(44px,5.3vw,70px);
+    line-height:1.06;
+    letter-spacing:-.035em;
+  }
+  .hero-title span{display:block;}
+  .hero-title .accent{
+    color:var(--coral-deep);
+    position:relative;
+    width:max-content;
+    max-width:100%;
+  }
+  .hero-title .accent::after{
+    content:"";
+    position:absolute;left:2px;right:-4px;bottom:1px;
+    height:7px;
+    background:var(--coral-soft);
+    z-index:-1;
+    transform:rotate(-1deg);
+  }
+  .hero-lede{
+    max-width:34em;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.9;
+  }
+  .hero-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px;}
+  .hero-tags span{
+    padding:5px 9px;
+    border:1px solid var(--line);
+    border-radius:3px;
+    color:var(--ink-soft);
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:.02em;
+    background:rgba(255,253,249,.4);
+  }
+
+  .concept-list{
+    margin-top:36px;
+    border-top:1px solid var(--line);
+  }
+  .concept-item{
+    display:grid;
+    grid-template-columns:38px minmax(0,1fr);
+    gap:14px;
+    padding:17px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .concept-num{
+    padding-top:2px;
+    color:var(--coral-deep);
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:.04em;
+  }
+  .concept-item h2{
+    font-family:var(--serif);
+    font-size:16px;
+    line-height:1.4;
+    font-weight:600;
+    margin-bottom:3px;
+  }
+  .concept-item p{color:var(--muted);font-size:13px;line-height:1.7;}
+
+  /* ---------- facilitator controls ---------- */
+  .utility{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:9px;
+    margin-bottom:7px;
+    padding:9px 10px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    background:rgba(255,253,249,.66);
+    backdrop-filter:blur(10px);
+  }
+  .utility-status{
+    display:flex;align-items:center;gap:7px;
+    color:var(--muted);
+    font-size:10px;
+    white-space:nowrap;
+  }
+  .utility-status strong{
+    color:var(--ink-soft);
+    font-weight:600;
+    letter-spacing:.04em;
+  }
+  .utility-page{
+    font-family:var(--mono);
+    font-size:10px;
+    color:var(--ink-soft);
+  }
+  .live-dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--sage);
+    box-shadow:0 0 0 3px rgba(124,144,127,.14);
+  }
+  .utility-actions{display:flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap;}
+  .seg{
+    display:inline-flex;
+    padding:3px;
+    border-radius:7px;
+    background:#EAE1D3;
+  }
+  .seg button{
+    min-height:30px;
+    padding:0 9px;
+    border:0;
+    border-radius:5px;
+    background:transparent;
+    color:var(--muted);
+    font-size:10px;
+    letter-spacing:.02em;
+    transition:background .15s ease,color .15s ease;
+  }
+  .seg button[aria-pressed="true"]{
+    background:var(--white);
+    color:var(--ink);
+    box-shadow:0 1px 2px rgba(31,41,64,.09);
+  }
+  .mini-toggle{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    min-height:36px;
+    padding:0 7px;
+    border:1px solid transparent;
+    border-radius:6px;
+    color:var(--muted);
+    font-size:10px;
+    white-space:nowrap;
+    user-select:none;
+  }
+  .mini-toggle:hover{background:rgba(31,41,64,.035);}
+  .mini-toggle input{
+    position:absolute;
+    opacity:0;
+    width:1px;height:1px;
+    pointer-events:none;
+  }
+  .mini-toggle .switch{
+    position:relative;
+    width:25px;height:15px;
+    flex:0 0 25px;
+    border:1px solid var(--line-strong);
+    border-radius:999px;
+    background:#EDE5D9;
+    transition:background .18s ease,border-color .18s ease;
+  }
+  .mini-toggle .switch::after{
+    content:"";
+    position:absolute;left:2px;top:2px;
+    width:9px;height:9px;
+    border-radius:50%;
+    background:var(--white);
+    box-shadow:0 1px 2px rgba(31,41,64,.22);
+    transition:transform .18s ease;
+  }
+  .mini-toggle input:checked + .switch{background:var(--coral-deep);border-color:var(--coral-deep);}
+  .mini-toggle input:checked + .switch::after{transform:translateX(10px);}
+  .mini-toggle:focus-within{border-color:var(--coral-deep);}
+  .reset-button{
+    width:36px;height:36px;
+    display:grid;place-items:center;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:transparent;
+    color:var(--muted);
+  }
+  .reset-button:hover{border-color:var(--coral-deep);color:var(--coral-deep);}
+  .reset-button svg{width:15px;height:15px;}
+  .control-note{
+    min-height:16px;
+    margin:0 2px 9px;
+    color:var(--muted);
+    font-size:10px;
+    line-height:1.55;
+  }
+  .control-note.is-armed{color:var(--coral-deep);}
+
+  /* ---------- phone chassis ---------- */
+  .phone-frame{
+    position:relative;
+    width:397px;
+    max-width:100%;
+    margin:0 auto;
+    padding:11px;
+    border-radius:47px;
+    background:linear-gradient(152deg,#33405B 0%,#222C43 42%,#111827 100%);
+    box-shadow:
+      0 38px 70px -38px rgba(24,34,54,.68),
+      0 4px 12px rgba(24,34,54,.18),
+      inset 0 1px 0 rgba(255,255,255,.2);
+  }
+  .phone-frame::before{
+    content:"";
+    position:absolute;
+    left:-2px;top:156px;
+    width:3px;height:58px;
+    border-radius:3px 0 0 3px;
+    background:#1C2538;
+    box-shadow:0 76px 0 #1C2538;
+  }
+  .phone-frame::after{
+    content:"";
+    position:absolute;
+    right:-2px;top:192px;
+    width:3px;height:88px;
+    border-radius:0 3px 3px 0;
+    background:#1C2538;
+  }
+  .phone{
+    position:relative;
+    width:375px;
+    height:770px;
+    max-width:100%;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    border-radius:37px;
+    background:var(--surface);
+    color:var(--ink);
+  }
+  .phone-status{
+    flex:0 0 27px;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 23px;
+    background:var(--surface);
+    font-family:var(--mono);
+    font-size:9px;
+    color:var(--ink-soft);
+  }
+  .status-icons{display:flex;align-items:center;gap:4px;}
+  .status-icons i{display:block;background:currentColor;border-radius:1px;}
+  .status-icons .signal{width:9px;height:6px;clip-path:polygon(0 100%,25% 100%,25% 55%,0 55%,0 100%,37% 100%,37% 30%,62% 30%,62% 100%,75% 100%,75% 0,100% 0,100% 100%);}
+  .status-icons .wifi{width:8px;height:6px;border-radius:50% 50% 0 0;background:transparent;border:1.5px solid currentColor;border-bottom:0;}
+  .status-icons .battery{width:13px;height:6px;border:1px solid currentColor;border-radius:1.5px;background:linear-gradient(to right,currentColor 72%,transparent 72%);}
+  .appbar{
+    flex:0 0 49px;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:8px;
+    padding:0 10px;
+    background:var(--surface);
+    border-bottom:1px solid rgba(200,187,169,.46);
+    position:relative;
+    z-index:3;
+  }
+  .appbar-left,.appbar-right{display:flex;align-items:center;gap:5px;min-width:0;}
+  .appbar-left{flex:1 1 auto;}
+  .appbar-right{flex:0 0 auto;}
+  .icon-button{
+    width:44px;height:44px;
+    display:grid;place-items:center;
+    border:0;border-radius:50%;
+    background:transparent;
+    color:var(--ink-soft);
+    transition:background .15s ease,opacity .15s ease,visibility .15s ease;
+  }
+  .icon-button:hover{background:rgba(31,41,64,.055);}
+  .icon-button svg{width:18px;height:18px;}
+  .icon-button.is-hidden{visibility:hidden;pointer-events:none;}
+  .appbar-brand{
+    font-family:var(--serif);
+    font-size:13px;
+    letter-spacing:.1em;
+    color:var(--ink);
+    white-space:nowrap;
+  }
+  .page-label{
+    padding:3px 5px;
+    border:1px solid var(--line);
+    border-radius:3px;
+    color:var(--ink-soft);
+    font-family:var(--mono);
+    font-size:8.5px;
+    line-height:1.3;
+    letter-spacing:.01em;
+    white-space:nowrap;
+  }
+  .ld-mode-badge{
+    display:none;
+    padding:3px 5px;
+    border:1px solid #999;
+    border-radius:2px;
+    color:#333;
+    font-family:var(--mono);
+    font-size:7.5px;
+    letter-spacing:.06em;
+  }
+  .stepper{display:flex;align-items:center;gap:4px;margin-left:2px;}
+  .stepper i{
+    display:block;
+    width:5px;height:5px;
+    border-radius:50%;
+    background:var(--line);
+    transition:background .2s ease,transform .2s ease;
+  }
+  .stepper i.is-on{background:var(--indigo);}
+  .stepper i.is-current{background:var(--coral);transform:scale(1.15);}
+  .demo-ribbon{
+    flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    min-height:25px;
+    padding:4px 10px;
+    background:rgba(217,107,85,.085);
+    border-bottom:1px solid rgba(169,71,51,.1);
+    color:#7A4235;
+    font-size:9px;
+    line-height:1.35;
+    letter-spacing:.015em;
+    text-align:center;
+  }
+  .demo-ribbon svg{width:9px;height:9px;flex:0 0 auto;}
+  .screens{flex:1 1 auto;min-height:0;position:relative;background:var(--surface);}
+  .screen{display:none;height:100%;min-height:0;flex-direction:column;}
+  .screen.is-active{display:flex;}
+  .screen-scroll{
+    flex:1 1 auto;
+    min-height:0;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-width:thin;
+    scrollbar-color:var(--line-strong) transparent;
+    padding:18px 20px 24px;
+  }
+  .screen-scroll::-webkit-scrollbar{width:5px;}
+  .screen-scroll::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:4px;}
+  .screen-inner{animation:screen-in .26s ease-out both;}
+  .screen-actions{
+    flex:0 0 auto;
+    padding:11px 20px calc(12px + env(safe-area-inset-bottom));
+    background:rgba(251,247,240,.95);
+    border-top:1px solid rgba(200,187,169,.55);
+    backdrop-filter:blur(9px);
+  }
+  .screen-actions.is-plain{padding-top:6px;}
+  .screen-heading{
+    margin:6px 0 7px;
+    font-family:var(--serif);
+    font-size:27px;
+    line-height:1.25;
+    letter-spacing:-.025em;
+    font-weight:600;
+  }
+  .screen-heading:focus{outline:none;}
+  .screen-lede{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.75;
+  }
+  .screen-eyebrow{font-size:9px;letter-spacing:.12em;}
+  .screen-eyebrow::before{width:18px;}
+  .inline-note{
+    margin-top:12px;
+    color:var(--muted);
+    font-size:10px;
+    line-height:1.65;
+  }
+  .micro-label{
+    color:var(--muted);
+    font-family:var(--mono);
+    font-size:9px;
+    letter-spacing:.04em;
+  }
+
+  /* buttons */
+  .btn{
+    width:100%;
+    min-height:52px;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    padding:10px 14px;
+    border:1px solid transparent;
+    border-radius:6px;
+    font-size:15px;
+    line-height:1.25;
+    font-weight:600;
+    letter-spacing:.02em;
+    transition:background .15s ease,transform .1s ease,filter .15s ease,color .15s ease;
+  }
+  .btn svg{width:16px;height:16px;flex:0 0 auto;}
+  .btn-primary{
+    background:var(--coral-deep);
+    color:#fff;
+    box-shadow:0 10px 20px -14px rgba(169,71,51,.7);
+  }
+  .btn-primary:hover{background:#973C29;}
+  .btn-primary:active{transform:translateY(1px);filter:brightness(.96);}
+  .btn-primary:disabled{
+    background:#CFC4B5;
+    color:#FBF7F0;
+    box-shadow:none;
+    cursor:not-allowed;
+  }
+  .btn-secondary{
+    background:transparent;
+    border-color:var(--line-strong);
+    color:var(--ink-soft);
+    font-weight:500;
+  }
+  .btn-secondary:hover{border-color:var(--ink-soft);background:rgba(31,41,64,.025);}
+  .text-button{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-height:44px;
+    padding:0 2px;
+    border:0;
+    background:none;
+    color:var(--ink-soft);
+    font-size:12px;
+    text-decoration:underline;
+    text-decoration-color:rgba(31,41,64,.35);
+    text-underline-offset:4px;
+  }
+  .text-button:hover{color:var(--coral-deep);text-decoration-color:currentColor;}
+  .text-button.small{min-height:36px;font-size:11px;color:var(--muted);}
+  .action-note{
+    margin-top:8px;
+    color:var(--muted);
+    font-size:10px;
+    line-height:1.55;
+    text-align:center;
+  }
+
+  /* ---------- tag screen ---------- */
+  .tag-scene{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    padding:34px 0 9px;
+    margin:7px 0 0;
+    background:
+      radial-gradient(180px 120px at 50% 42%, rgba(200,187,169,.32), transparent 70%),
+      linear-gradient(to bottom, transparent 88%, rgba(200,187,169,.25) 88%, transparent 89%);
+  }
+  .tag-string{
+    position:absolute;
+    top:0;left:50%;
+    width:1px;height:48px;
+    background:linear-gradient(to bottom,rgba(31,41,64,.08),rgba(31,41,64,.48));
+    transform:translateX(-50%) rotate(1.2deg);
+    transform-origin:top center;
+  }
+  .tag-string::after{
+    content:"";
+    position:absolute;left:-3px;top:42px;
+    width:7px;height:7px;
+    border:1px solid var(--line-strong);
+    border-radius:50%;
+    background:var(--surface);
+  }
+  .tag-card{
+    position:relative;
+    width:232px;
+    height:346px;
+    border:1px solid rgba(31,41,64,.12);
+    border-radius:3px;
+    overflow:hidden;
+    background:var(--surface);
+    box-shadow:0 28px 40px -28px rgba(31,41,64,.62),0 2px 3px rgba(31,41,64,.08);
+    transform:rotate(-1.2deg);
+    transition:transform .25s ease,opacity .25s ease;
+  }
+  .tag-card::after{
+    content:"";
+    position:absolute;inset:0;
+    pointer-events:none;
+    background:linear-gradient(115deg,rgba(255,255,255,.35),transparent 34%,rgba(31,41,64,.025));
+  }
+  .tag-punch{
+    position:absolute;
+    left:50%;top:13px;
+    width:15px;height:15px;
+    transform:translateX(-50%);
+    border-radius:50%;
+    background:var(--paper);
+    border:1px solid rgba(31,41,64,.22);
+    box-shadow:inset 0 1px 2px rgba(31,41,64,.16);
+    z-index:4;
+  }
+  .tag-face{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;
+    opacity:0;
+    transform:translateX(7px);
+    pointer-events:none;
+    transition:opacity .2s ease,transform .24s ease;
+  }
+  .tag-face.is-active{
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+  }
+  .tag-face--front{background:#F9F2E7;color:var(--ink);}
+  .tag-art{
+    position:relative;
+    height:185px;
+    overflow:hidden;
+    background:#E9DFCE;
+  }
+  .tag-art svg{width:100%;height:100%;}
+  .tag-art::after{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(to top,rgba(25,38,65,.2),transparent 45%);
+    pointer-events:none;
+  }
+  .tag-art-label{
+    position:absolute;left:10px;bottom:9px;z-index:2;
+    padding:3px 6px;
+    border:1px solid rgba(255,253,249,.55);
+    background:rgba(25,38,65,.52);
+    color:#FFF9EE;
+    font-family:var(--mono);
+    font-size:8px;
+    letter-spacing:.08em;
+  }
+  .tag-body{
+    position:relative;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 49px;
+    gap:8px;
+    padding:11px 12px 8px;
+  }
+  .tag-kicker{
+    color:var(--coral-deep);
+    font-family:var(--mono);
+    font-size:7.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .tag-title{
+    margin-top:5px;
+    font-family:var(--serif);
+    font-size:16px;
+    font-weight:600;
+    line-height:1.35;
+    letter-spacing:-.01em;
+  }
+  .tag-qr{
+    align-self:end;
+    position:relative;
+    width:49px;height:49px;
+    display:flex;align-items:center;justify-content:center;
+    border:1px dashed rgba(31,41,64,.38);
+    background:
+      linear-gradient(to top right,transparent calc(50% - .5px),rgba(31,41,64,.12) 50%,transparent calc(50% + .5px)),
+      rgba(255,253,249,.38);
+    color:var(--muted);
+    text-align:center;
+    font-size:7px;
+    line-height:1.4;
+  }
+  .tag-qr::before{
+    content:"";
+    position:absolute;inset:5px;
+    border:1px solid rgba(31,41,64,.09);
+  }
+  .tag-foot{
+    margin-top:auto;
+    padding:6px 12px 8px;
+    display:flex;align-items:center;justify-content:space-between;
+    border-top:1px solid rgba(200,187,169,.44);
+    color:var(--muted);
+    font-family:var(--mono);
+    font-size:7px;
+    letter-spacing:.06em;
+  }
+  .tag-face--back{
+    padding:42px 19px 16px;
+    background:var(--indigo);
+    color:#F8F0E3;
+  }
+  .tag-back-kicker{
+    color:var(--ochre);
+    font-family:var(--mono);
+    font-size:7.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .tag-back-quote{
+    margin-top:16px;
+    font-family:var(--serif);
+    font-size:22px;
+    line-height:1.45;
+    letter-spacing:.01em;
+  }
+  .tag-back-body{
+    margin-top:14px;
+    color:rgba(248,240,227,.75);
+    font-size:10px;
+    line-height:1.8;
+  }
+  .tag-back-rule{width:26px;height:1px;background:var(--coral);margin:17px 0 12px;}
+  .tag-back-fine{
+    margin-top:auto;
+    color:rgba(248,240,227,.55);
+    font-family:var(--mono);
+    font-size:7px;
+    line-height:1.75;
+    letter-spacing:.03em;
+  }
+  .tag-back-mark{
+    position:absolute;right:16px;top:39px;
+    color:rgba(248,240,227,.6);
+    font-family:var(--mono);
+    font-size:7px;
+    letter-spacing:.09em;
+  }
+  .tag-controls{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:10px;min-height:42px;
+    padding:0 2px;
+  }
+  .tag-flag{color:var(--muted);font-size:9px;letter-spacing:.02em;text-align:right;}
+  .link-button{
+    display:inline-flex;align-items:center;justify-content:center;gap:5px;
+    min-height:44px;
+    padding:0;
+    border:0;background:none;
+    color:var(--ink-soft);
+    font-size:11px;
+    text-decoration:underline;
+    text-decoration-color:rgba(31,41,64,.3);
+    text-underline-offset:4px;
+    text-align:left;
+  }
+  .link-button:hover{color:var(--coral-deep);text-decoration-color:currentColor;}
+  .link-button svg{width:12px;height:12px;}
+
+  /* ---------- loading ---------- */
+  .screen--loading .screen-scroll{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-bottom:34px;
+  }
+  .loading-art{
+    position:relative;
+    height:286px;
+    margin-bottom:26px;
+    overflow:hidden;
+    background:#E8DECD;
+    border-radius:2px;
+  }
+  .loading-art svg{width:100%;height:100%;opacity:.82;}
+  .loading-art::after{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(to bottom,transparent 20%,rgba(255,253,249,.22) 50%,transparent 78%);
+    animation:scan-sweep 1.45s ease-in-out infinite;
+    transform:translateY(-100%);
+  }
+  .loading-art .scan-line{
+    position:absolute;left:0;right:0;top:50%;height:1px;
+    background:rgba(255,253,249,.7);
+    box-shadow:0 0 18px rgba(255,253,249,.45);
+  }
+  .loading-copy{padding:0 2px;}
+  .loading-copy .screen-heading{font-size:30px;line-height:1.2;}
+  .load-meter{
+    position:relative;
+    height:2px;
+    margin-top:25px;
+    overflow:hidden;
+    background:var(--line);
+  }
+  .load-meter span{
+    display:block;height:100%;
+    width:45%;
+    background:var(--coral-deep);
+    animation:load-move 1.2s ease-in-out infinite;
+  }
+  .loading-note{margin-top:12px;color:var(--muted);font-size:10px;}
+
+  /* ---------- artwork ---------- */
+  .art-stage{
+    position:relative;
+    height:292px;
+    overflow:hidden;
+    background:#DED2BF;
+    border-radius:2px;
+    transition:height .78s cubic-bezier(.22,.8,.22,1);
+    contain:paint;
+  }
+  .art-stage.is-revealed{height:412px;}
+  .art-layer{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    transition:opacity .55s ease,transform .9s cubic-bezier(.2,.8,.2,1);
+  }
+  .art-layer--crop{opacity:1;transform:scale(1);}
+  .art-layer--full{opacity:0;transform:scale(1.035);transition-delay:.1s;}
+  .art-stage.is-revealed .art-layer--crop{opacity:0;transform:scale(1.08);}
+  .art-stage.is-revealed .art-layer--full{opacity:1;transform:scale(1);}
+  .art-stamp{
+    position:absolute;left:10px;top:10px;z-index:5;
+    padding:4px 6px;
+    border:1px solid rgba(255,253,249,.45);
+    background:rgba(25,38,65,.62);
+    color:#FFF9EE;
+    font-size:8px;
+    line-height:1.25;
+    letter-spacing:.025em;
+    text-align:center;
+    backdrop-filter:blur(4px);
+  }
+  .art-state{
+    position:absolute;right:10px;bottom:10px;z-index:5;
+    padding:4px 7px;
+    border:1px solid rgba(255,253,249,.4);
+    background:rgba(255,253,249,.78);
+    color:var(--ink-soft);
+    font-family:var(--mono);
+    font-size:8px;
+    letter-spacing:.05em;
+    transition:background .3s ease;
+  }
+  .art-caption{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:8px;min-height:42px;
+  }
+  .art-caption span{color:var(--muted);font-size:9px;text-align:right;}
+  .work-copy{margin-top:2px;}
+  .work-copy .screen-heading{font-size:30px;margin-bottom:4px;}
+  .work-meta{color:var(--muted);font-size:10px;letter-spacing:.01em;}
+  .work-copy .screen-lede{margin-top:10px;}
+
+  .creator-card{
+    margin-top:18px;
+    padding:14px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:var(--surface-2);
+  }
+  .creator-head{display:flex;align-items:flex-start;gap:11px;}
+  .creator-avatar{
+    width:43px;height:43px;flex:0 0 43px;
+    display:grid;place-items:center;
+    border-radius:50%;
+    background:var(--indigo);
+    color:#F8EFE0;
+    font-family:var(--serif);
+    font-size:20px;
+  }
+  .creator-copy{min-width:0;flex:1;}
+  .creator-title-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .creator-title-row h3{
+    font-family:var(--serif);
+    font-size:15px;
+    line-height:1.35;
+    font-weight:600;
+  }
+  .lock-badge{
+    display:inline-flex;align-items:center;gap:4px;
+    padding:2px 5px;
+    border:1px solid rgba(169,71,51,.2);
+    border-radius:2px;
+    background:rgba(217,107,85,.08);
+    color:var(--coral-deep);
+    font-size:8px;
+    line-height:1.3;
+    white-space:nowrap;
+  }
+  .creator-copy p{margin-top:5px;color:var(--muted);font-size:10px;line-height:1.7;}
+  .creator-card > .link-button{margin-top:8px;font-size:10px;}
+  .creator-placeholder{
+    margin-top:12px;
+    padding-top:13px;
+    border-top:1px dashed var(--line-strong);
+  }
+  .creator-placeholder .placeholder-name{
+    font-family:var(--serif);
+    font-size:17px;
+    line-height:1.4;
+    color:var(--ink);
+  }
+  .creator-placeholder .placeholder-quote{
+    margin-top:6px;
+    color:var(--ink-soft);
+    font-size:12px;
+    line-height:1.8;
+  }
+  .placeholder-facts{
+    display:flex;flex-wrap:wrap;gap:5px;
+    margin-top:10px;
+  }
+  .placeholder-facts span{
+    padding:3px 6px;
+    border:1px dashed var(--line-strong);
+    color:var(--muted);
+    font-family:var(--mono);
+    font-size:8px;
+  }
+  .placeholder-caveat{
+    margin-top:10px;
+    padding:7px 8px;
+    background:rgba(217,107,85,.07);
+    color:var(--coral-deep);
+    font-size:9px;
+    line-height:1.65;
+  }
+  .project-note{
+    margin-top:18px;
+    padding:14px 0 2px;
+    border-top:1px solid var(--line);
+  }
+  .project-note h3{
+    font-family:var(--serif);
+    font-size:15px;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .project-note > p{
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.8;
+  }
+  .project-note ul{margin-top:8px;display:grid;gap:5px;}
+  .project-note li{
+    position:relative;
+    padding-left:11px;
+    color:var(--muted);
+    font-size:10px;
+    line-height:1.7;
+  }
+  .project-note li::before{
+    content:"";
+    position:absolute;left:0;top:.72em;
+    width:4px;height:4px;
+    border-radius:50%;
+    background:var(--coral);
+  }
+  .project-note li strong{color:var(--ink-soft);font-weight:600;}
+
+  /* ---------- print / tee widgets ---------- */
+  .tee-widget{
+    position:relative;
+    display:block;
+    width:100%;
+    aspect-ratio:240 / 280;
+    color:#F8F1E5;
+  }
+  .tee-svg{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    filter:drop-shadow(0 10px 12px rgba(31,41,64,.11));
+  }
+  .tee-widget .print{
+    position:absolute;
+    display:block;
+    overflow:hidden;
+    border:1px solid rgba(31,41,64,.18);
+    background:#E9DECD;
+    box-shadow:0 1px 3px rgba(31,41,64,.13);
+  }
+  .tee-widget .print svg{width:100%;height:100%;}
+  .tee-widget[data-print="chest"] .print{
+    left:56.5%;
+    top:39.5%;
+    width:22%;
+    height:25.5%;
+  }
+  .tee-widget[data-print="full"] .print{
+    left:29.5%;
+    top:30.5%;
+    width:41%;
+    height:49%;
+  }
+  .tee-widget--confirm{max-width:138px;}
+
+  /* ---------- layout picker ---------- */
+  .layout-picker{border:0;padding:0;margin:18px 0 0;min-width:0;}
+  .layout-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .layout-option{
+    position:relative;
+    display:flex;flex-direction:column;
+    min-width:0;
+    padding:8px 8px 11px;
+    border:1px solid var(--line);
+    border-radius:7px;
+    background:#F8F1E6;
+    cursor:pointer;
+    transition:border-color .18s ease,background .18s ease,box-shadow .18s ease;
+  }
+  .layout-option:hover{border-color:var(--line-strong);background:#FBF5EB;}
+  .layout-option:focus-within{outline:3px solid var(--coral-deep);outline-offset:2px;}
+  .layout-radio{
+    position:absolute;
+    opacity:0;
+    width:1px;height:1px;
+    pointer-events:none;
+  }
+  .layout-option .tee-widget{margin-top:2px;}
+  .layout-option .option-label{
+    display:flex;flex-direction:column;gap:1px;
+    margin-top:4px;
+    padding:0 1px;
+  }
+  .option-label strong{
+    font-family:var(--serif);
+    font-size:14px;
+    font-weight:600;
+    line-height:1.4;
+    color:var(--ink);
+  }
+  .option-label small{color:var(--muted);font-size:9px;line-height:1.5;}
+  .option-check{
+    position:absolute;top:7px;right:7px;z-index:2;
+    width:18px;height:18px;
+    border:1px solid var(--line-strong);
+    border-radius:50%;
+    background:rgba(255,253,249,.8);
+    box-shadow:0 1px 2px rgba(31,41,64,.08);
+  }
+  .option-check::after{
+    content:"";
+    position:absolute;left:5px;top:4px;
+    width:6px;height:3px;
+    border-left:1.5px solid transparent;
+    border-bottom:1.5px solid transparent;
+    transform:rotate(-45deg);
+  }
+  .layout-option.is-selected{
+    border-color:var(--coral-deep);
+    background:#FFF9F1;
+    box-shadow:inset 0 0 0 1px var(--coral-deep),0 10px 18px -18px rgba(169,71,51,.65);
+  }
+  .layout-option.is-selected .option-check{
+    background:var(--coral-deep);
+    border-color:var(--coral-deep);
+  }
+  .layout-option.is-selected .option-check::after{
+    border-left-color:#fff;
+    border-bottom-color:#fff;
+  }
+  .selected-label{
+    display:none;
+    position:absolute;left:9px;top:8px;
+    padding:2px 5px;
+    border-radius:2px;
+    background:var(--coral-deep);
+    color:#fff;
+    font-size:7.5px;
+    line-height:1.3;
+    letter-spacing:.04em;
+  }
+  .layout-option.is-selected .selected-label{display:inline-block;}
+  .selection-summary{
+    display:flex;align-items:center;gap:8px;
+    margin-top:12px;
+    padding:9px 10px;
+    border:1px solid rgba(169,71,51,.2);
+    border-radius:4px;
+    background:rgba(217,107,85,.065);
+    color:var(--ink-soft);
+    font-size:11px;
+  }
+  .selection-summary span{
+    color:var(--coral-deep);
+    font-family:var(--mono);
+    font-size:8px;
+    letter-spacing:.05em;
+  }
+  .selection-summary strong{font-weight:600;}
+
+  /* ---------- confirm ---------- */
+  .confirm-summary{
+    display:grid;
+    grid-template-columns:121px minmax(0,1fr);
+    gap:14px;
+    align-items:center;
+    margin:14px 0 13px;
+    padding:12px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:#F7F0E5;
+  }
+  .confirm-summary .tee-widget{width:121px;margin:0 auto;}
+  .summary-kicker{
+    color:var(--coral-deep);
+    font-family:var(--mono);
+    font-size:8px;
+    letter-spacing:.08em;
+  }
+  .summary-title{
+    margin-top:4px;
+    font-family:var(--serif);
+    font-size:17px;
+    line-height:1.4;
+    font-weight:600;
+  }
+  .summary-title span{display:block;color:var(--ink-soft);font-size:13px;}
+  .summary-meta{margin-top:5px;color:var(--muted);font-size:9px;line-height:1.6;}
+  .detail-list{
+    display:grid;gap:0;
+    border-top:1px solid var(--line);
+  }
+  .detail-row{
+    display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
+    padding:9px 0;
+    border-bottom:1px solid var(--line);
+    font-size:11px;
+  }
+  .detail-row dt{color:var(--muted);flex:0 0 auto;}
+  .detail-row dd{margin:0;color:var(--ink-soft);text-align:right;font-weight:600;}
+  .demo-notice{
+    margin-top:13px;
+    padding:11px 12px;
+    border:1px solid rgba(128,91,26,.2);
+    border-left:3px solid var(--warn);
+    border-radius:0 4px 4px 0;
+    background:var(--warn-bg);
+    color:#674915;
+  }
+  .demo-notice strong{
+    display:block;
+    font-size:10px;
+    line-height:1.5;
+    letter-spacing:.03em;
+  }
+  .demo-notice p{margin-top:3px;font-size:9px;line-height:1.7;}
+
+  /* ---------- submitting ---------- */
+  .screen--submitting .screen-scroll{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding-bottom:46px;
+  }
+  .spinner{
+    position:relative;
+    width:52px;height:52px;
+    margin-bottom:24px;
+    border:1px solid var(--line);
+    border-radius:50%;
+  }
+  .spinner::before{
+    content:"";
+    position:absolute;inset:-1px;
+    border:2px solid transparent;
+    border-top-color:var(--coral-deep);
+    border-right-color:var(--coral);
+    border-radius:50%;
+    animation:spin .9s linear infinite;
+  }
+  .spinner::after{
+    content:"";
+    position:absolute;left:50%;top:50%;
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--indigo);
+    transform:translate(-50%,-50%);
+  }
+  .screen--submitting .screen-heading{font-size:28px;}
+  .screen--submitting .screen-lede{max-width:250px;}
+  .local-chip{
+    display:inline-flex;align-items:center;gap:5px;
+    margin-top:18px;
+    padding:5px 8px;
+    border:1px solid var(--line);
+    border-radius:3px;
+    color:var(--muted);
+    font-family:var(--mono);
+    font-size:8px;
+    letter-spacing:.03em;
+  }
+  .local-chip::before{
+    content:"";width:4px;height:4px;border-radius:50%;background:var(--sage);
+  }
+
+  /* ---------- complete ---------- */
+  .complete-hero{display:flex;flex-direction:column;align-items:flex-start;padding-top:4px;}
+  .complete-mark{
+    width:57px;height:57px;
+    display:grid;place-items:center;
+    margin-bottom:17px;
+    border:1px solid rgba(169,71,51,.3);
+    border-radius:50%;
+    background:rgba(217,107,85,.1);
+    color:var(--coral-deep);
+  }
+  .complete-mark svg{width:25px;height:25px;}
+  .complete-hero .screen-heading{font-size:31px;}
+  .receipt{
+    margin-top:18px;
+    padding:13px;
+    border:1px dashed var(--line-strong);
+    border-radius:4px;
+    background:rgba(255,253,249,.48);
+  }
+  .receipt-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+  .receipt-label{color:var(--muted);font-size:9px;letter-spacing:.04em;}
+  .receipt code{
+    display:block;
+    margin-top:5px;
+    color:var(--ink);
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.02em;
+    overflow-wrap:anywhere;
+  }
+  .receipt-status{
+    flex:0 0 auto;
+    padding:3px 6px;
+    border:1px solid rgba(52,98,74,.25);
+    border-radius:2px;
+    color:var(--ok);
+    font-family:var(--mono);
+    font-size:7.5px;
+    letter-spacing:.04em;
+  }
+  .receipt-layout{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    margin-top:11px;padding-top:9px;
+    border-top:1px solid var(--line);
+    color:var(--muted);
+    font-size:9px;
+  }
+  .receipt-layout strong{color:var(--ink-soft);font-weight:600;}
+  .receipt-fine{margin-top:7px;color:var(--muted);font-size:8px;line-height:1.6;}
+  .truth-list{display:grid;gap:7px;margin-top:16px;}
+  .truth-list li{
+    display:flex;align-items:center;gap:8px;
+    color:var(--ink-soft);
+    font-size:11px;
+  }
+  .truth-list svg{width:13px;height:13px;flex:0 0 13px;color:var(--sage);}
+  .complete-quote{
+    margin-top:17px;
+    padding-left:11px;
+    border-left:2px solid var(--coral);
+    color:var(--muted);
+    font-family:var(--serif);
+    font-size:12px;
+    line-height:1.8;
+  }
+  .complete-extra-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:3px;}
+
+  /* ---------- errors ---------- */
+  .screen--error .screen-scroll{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-bottom:30px;
+  }
+  .error-mark{
+    width:112px;height:100px;
+    margin-bottom:24px;
+    color:var(--coral-deep);
+  }
+  .error-mark svg{width:100%;height:100%;}
+  .error-copy .screen-heading{font-size:29px;}
+  .error-copy .screen-lede{max-width:280px;}
+  .draft-chip{
+    display:flex;align-items:center;gap:7px;
+    width:max-content;max-width:100%;
+    margin-top:15px;
+    padding:6px 9px;
+    border:1px solid var(--line);
+    border-radius:3px;
+    color:var(--muted);
+    font-size:9px;
+  }
+  .draft-chip strong{color:var(--ink-soft);font-weight:600;}
+  .error-actions-stack{display:grid;gap:1px;}
+  .error-actions-stack .text-button{justify-self:center;}
+
+  /* ---------- state readout ---------- */
+  .state-readout{
+    display:flex;align-items:center;gap:9px;
+    margin-top:11px;
+    padding:9px 11px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:rgba(255,253,249,.52);
+  }
+  .state-pulse{
+    width:7px;height:7px;flex:0 0 7px;
+    border-radius:50%;
+    background:var(--sage);
+    box-shadow:0 0 0 3px rgba(124,144,127,.13);
+  }
+  .state-copy{display:flex;flex-direction:column;gap:1px;min-width:0;flex:1;}
+  .state-kicker{color:var(--muted);font-family:var(--mono);font-size:7.5px;letter-spacing:.08em;text-transform:uppercase;}
+  .state-page{color:var(--ink-soft);font-size:11px;font-weight:600;line-height:1.4;}
+  .state-detail{color:var(--muted);font-size:9px;line-height:1.4;}
+  .local-only{
+    flex:0 0 auto;
+    color:var(--muted);
+    font-family:var(--mono);
+    font-size:8px;
+    letter-spacing:.01em;
+    text-align:right;
+    white-space:nowrap;
+  }
+
+  /* ---------- explanation notes ---------- */
+  .notes{border-top:1px solid var(--line);padding-top:24px;}
+  .notes-heading{
+    display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+    margin-bottom:15px;
+  }
+  .notes-heading h2{
+    font-family:var(--serif);
+    font-size:20px;
+    font-weight:600;
+    letter-spacing:-.015em;
+  }
+  .notes-heading span{color:var(--muted);font-family:var(--mono);font-size:9px;letter-spacing:.04em;}
+  .journey{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .journey-step{
+    position:relative;
+    padding:13px 10px 13px 0;
+    color:var(--muted);
+  }
+  .journey-step + .journey-step{padding-left:10px;border-left:1px solid var(--line);}
+  .journey-step span{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.05em;color:var(--line-strong);}
+  .journey-step strong{display:block;margin-top:4px;font-size:11px;font-weight:500;line-height:1.45;color:var(--muted);}
+  .journey-step.is-current strong{color:var(--ink);}
+  .journey-step.is-current span{color:var(--coral-deep);}
+  .journey-step.is-current::after{
+    content:"";
+    position:absolute;left:0;right:0;bottom:-1px;height:2px;
+    background:var(--coral);
+  }
+  .notes-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+    margin-top:22px;
+  }
+  .note-block h3{
+    display:flex;align-items:center;gap:7px;
+    margin-bottom:7px;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.03em;
+  }
+  .note-block h3::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--coral);}
+  .note-block p,.note-block li{color:var(--muted);font-size:11px;line-height:1.75;}
+  .note-block ol{counter-reset:steps;display:grid;gap:4px;}
+  .note-block ol li{position:relative;padding-left:17px;counter-increment:steps;}
+  .note-block ol li::before{
+    content:counter(steps,decimal-leading-zero);
+    position:absolute;left:0;top:.05em;
+    color:var(--coral-deep);
+    font-family:var(--mono);
+    font-size:8px;
+  }
+  .boundary-callout{
+    margin-top:22px;
+    padding:13px 14px;
+    border:1px solid rgba(169,71,51,.2);
+    border-left:3px solid var(--coral);
+    border-radius:0 4px 4px 0;
+    background:rgba(217,107,85,.055);
+    color:var(--ink-soft);
+    font-size:10px;
+    line-height:1.8;
+  }
+  .boundary-callout strong{font-weight:600;}
+
+  .site-footer{
+    max-width:1220px;
+    margin:0 auto;
+    padding:20px 40px 34px;
+    border-top:1px solid var(--line);
+    display:flex;align-items:flex-start;justify-content:space-between;gap:32px;
+  }
+  .site-footer p{max-width:770px;color:var(--muted);font-size:10px;line-height:1.8;}
+  .site-footer .footer-mark{
+    flex:0 0 auto;
+    color:var(--coral-deep);
+    font-family:var(--mono);
+    font-size:9px;
+    letter-spacing:.06em;
+    text-align:right;
+    line-height:1.7;
+  }
+
+  /* ---------- low fidelity ---------- */
+  .phone[data-fidelity="low"]{
+    --paper:#F4F4F4;
+    --surface:#FFFFFF;
+    --surface-2:#F6F6F6;
+    --ink:#333333;
+    --ink-soft:#444444;
+    --muted:#666666;
+    --line:#BBBBBB;
+    --line-strong:#999999;
+    --indigo:#333333;
+    --indigo-deep:#222222;
+    --coral:#555555;
+    --coral-deep:#222222;
+    --coral-soft:#E5E5E5;
+    --ochre:#888888;
+    --sage:#888888;
+    --warn:#444444;
+    --warn-bg:#F2F2F2;
+    --ok:#444444;
+    --white:#FFFFFF;
+    font-family:var(--sans);
+    background:#fff;
+  }
+  .phone[data-fidelity="low"] .phone-status,
+  .phone[data-fidelity="low"] .appbar,
+  .phone[data-fidelity="low"] .screens,
+  .phone[data-fidelity="low"] .screen-actions{background:#fff;}
+  .phone[data-fidelity="low"] .demo-ribbon{
+    background:#F0F0F0;
+    border-color:#CCC;
+    color:#444;
+    letter-spacing:.04em;
+  }
+  .phone[data-fidelity="low"] .ld-mode-badge{display:inline-block;}
+  .phone[data-fidelity="low"] .screen-heading,
+  .phone[data-fidelity="low"] .hero-title,
+  .phone[data-fidelity="low"] .summary-title,
+  .phone[data-fidelity="low"] .placeholder-name{
+    font-family:var(--sans);
+    letter-spacing:0;
+    font-weight:600;
+  }
+  .phone[data-fidelity="low"] .screen-heading{font-size:25px;line-height:1.3;}
+  .phone[data-fidelity="low"] .screen-lede,
+  .phone[data-fidelity="low"] .project-note > p,
+  .phone[data-fidelity="low"] .project-note li,
+  .phone[data-fidelity="low"] .creator-copy p,
+  .phone[data-fidelity="low"] .work-meta,
+  .phone[data-fidelity="low"] .inline-note{color:#555;}
+  .phone[data-fidelity="low"] .screen-eyebrow{color:#444;letter-spacing:.08em;}
+  .phone[data-fidelity="low"] .screen-eyebrow::before{background:#777;}
+  .phone[data-fidelity="low"] .tag-card,
+  .phone[data-fidelity="low"] .creator-card,
+  .phone[data-fidelity="low"] .layout-option,
+  .phone[data-fidelity="low"] .confirm-summary,
+  .phone[data-fidelity="low"] .receipt,
+  .phone[data-fidelity="low"] .demo-notice,
+  .phone[data-fidelity="low"] .selection-summary,
+  .phone[data-fidelity="low"] .draft-chip,
+  .phone[data-fidelity="low"] .local-chip,
+  .phone[data-fidelity="low"] .tag-qr{
+    border-radius:0;
+    box-shadow:none;
+    background:#fff;
+  }
+  .phone[data-fidelity="low"] .tag-card{
+    transform:none;
+    border:1px solid #999;
+    background:#fff;
+  }
+  .phone[data-fidelity="low"] .tag-card::after{display:none;}
+  .phone[data-fidelity="low"] .tag-face--front{background:#fff;}
+  .phone[data-fidelity="low"] .tag-face--back{background:#fff;color:#333;}
+  .phone[data-fidelity="low"] .tag-back-kicker,
+  .phone[data-fidelity="low"] .tag-back-mark{color:#555;}
+  .phone[data-fidelity="low"] .tag-back-body,
+  .phone[data-fidelity="low"] .tag-back-fine{color:#666;}
+  .phone[data-fidelity="low"] .tag-back-rule{background:#999;}
+  .phone[data-fidelity="low"] .tag-art,
+  .phone[data-fidelity="low"] .art-stage,
+  .phone[data-fidelity="low"] .loading-art{
+    background:
+      repeating-linear-gradient(135deg,#EEE 0,#EEE 8px,#E7E7E7 8px,#E7E7E7 9px);
+    border:1px dashed #999;
+  }
+  .phone[data-fidelity="low"] .tag-art svg,
+  .phone[data-fidelity="low"] .art-layer,
+  .phone[data-fidelity="low"] .loading-art svg,
+  .phone[data-fidelity="low"] .print svg{
+    opacity:.09;
+    filter:grayscale(1);
+  }
+  .phone[data-fidelity="low"] .tag-art::after{
+    background:none;
+    z-index:3;
+  }
+  .phone[data-fidelity="low"] .tag-art::before{
+    content:"[IMG] 画作局部";
+    position:absolute;left:50%;top:50%;
+    transform:translate(-50%,-50%);
+    z-index:4;
+    color:#555;
+    font-family:var(--mono);
+    font-size:9px;
+    letter-spacing:.04em;
+    white-space:nowrap;
+  }
+  .phone[data-fidelity="low"] .art-stage::after{
+    content:"[IMG] 画作占位 · 示意裁切";
+    position:absolute;left:50%;top:50%;
+    transform:translate(-50%,-50%);
+    z-index:6;
+    color:#555;
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:.04em;
+    white-space:nowrap;
+  }
+  .phone[data-fidelity="low"] .loading-art::after{display:none;}
+  .phone[data-fidelity="low"] .loading-art::before{
+    content:"[IMG] 加载占位";
+    position:absolute;left:50%;top:50%;
+    transform:translate(-50%,-50%);
+    z-index:4;
+    color:#555;
+    font-family:var(--mono);
+    font-size:10px;
+  }
+  .phone[data-fidelity="low"] .art-stamp,
+  .phone[data-fidelity="low"] .art-state{background:#fff;color:#333;border-color:#999;}
+  .phone[data-fidelity="low"] .tag-art-label{background:#fff;color:#333;border-color:#999;}
+  .phone[data-fidelity="low"] .tee-svg{filter:none;color:#EDEDED;}
+  .phone[data-fidelity="low"] .tee-widget .print{
+    background:#E4E4E4;
+    border:1px dashed #777;
+    box-shadow:none;
+  }
+  .phone[data-fidelity="low"] .tee-widget .print::after{
+    content:"画";
+    position:absolute;inset:0;
+    display:grid;place-items:center;
+    color:#555;
+    font-family:var(--mono);
+    font-size:8px;
+  }
+  .phone[data-fidelity="low"] .layout-option{border:1px solid #999;background:#fff;}
+  .phone[data-fidelity="low"] .layout-option.is-selected{
+    border-color:#222;
+    box-shadow:inset 0 0 0 1px #222;
+    background:#F4F4F4;
+  }
+  .phone[data-fidelity="low"] .layout-option.is-selected .option-check{background:#222;border-color:#222;}
+  .phone[data-fidelity="low"] .selected-label{background:#222;border-radius:0;}
+  .phone[data-fidelity="low"] .option-check{border-radius:0;background:#fff;}
+  .phone[data-fidelity="low"] .selection-summary{background:#F3F3F3;border-color:#999;}
+  .phone[data-fidelity="low"] .selection-summary span{color:#333;}
+  .phone[data-fidelity="low"] .creator-avatar,
+  .phone[data-fidelity="low"] .complete-mark,
+  .phone[data-fidelity="low"] .spinner::after,
+  .phone[data-fidelity="low"] .local-chip::before,
+  .phone[data-fidelity="low"] .layout-option .selected-label{
+    background:#444;color:#fff;
+  }
+  .phone[data-fidelity="low"] .complete-mark{border-color:#777;color:#222;background:#F0F0F0;}
+  .phone[data-fidelity="low"] .lock-badge{
+    border:1px solid #999;
+    background:#F2F2F2;
+    color:#444;
+    border-radius:0;
+  }
+  .phone[data-fidelity="low"] .creator-placeholder{border-top-style:dashed;border-color:#999;}
+  .phone[data-fidelity="low"] .placeholder-facts span{border-color:#999;background:#FAFAFA;}
+  .phone[data-fidelity="low"] .placeholder-caveat{
+    border:1px dashed #999;
+    background:#F2F2F2;
+    color:#444;
+  }
+  .phone[data-fidelity="low"] .btn{border-radius:0;box-shadow:none;font-weight:600;}
+  .phone[data-fidelity="low"] .btn-primary{
+    background:#F1F1F1;
+    color:#222;
+    border:1px solid #333;
+  }
+  .phone[data-fidelity="low"] .btn-primary:hover{background:#E9E9E9;}
+  .phone[data-fidelity="low"] .btn-primary:disabled{
+    background:#F6F6F6;
+    color:#999;
+    border:1px dashed #BBB;
+  }
+  .phone[data-fidelity="low"] .btn-secondary{border:1px solid #666;border-radius:0;color:#333;}
+  .phone[data-fidelity="low"] .text-button,
+  .phone[data-fidelity="low"] .link-button{color:#333;}
+  .phone[data-fidelity="low"] .demo-notice{
+    border:1px dashed #888;
+    border-left:3px solid #444;
+    color:#444;
+  }
+  .phone[data-fidelity="low"] .spinner{
+    border:1px dashed #777;
+    border-radius:50%;
+  }
+  .phone[data-fidelity="low"] .spinner::before{border-top-color:#333;border-right-color:#999;}
+  .phone[data-fidelity="low"] .art-stage,
+  .phone[data-fidelity="low"] .loading-art{border-radius:0;}
+  .phone[data-fidelity="low"] .tag-string{background:#AAA;}
+  .phone[data-fidelity="low"] .tag-string::after{border-color:#888;background:#fff;}
+  .phone[data-fidelity="low"] .tag-punch{background:#fff;border-color:#777;}
+  .phone[data-fidelity="low"] .tag-qr{
+    border:1px dashed #777;
+    background:#FAFAFA;
+    color:#555;
+  }
+  .phone[data-fidelity="low"] .tag-qr::before{border-color:#CCC;}
+  .phone[data-fidelity="low"] .tag-qr::after{
+    content:"[QR]";
+    position:absolute;right:2px;bottom:1px;
+    color:#777;
+    font-family:var(--mono);
+    font-size:6px;
+  }
+  .phone[data-fidelity="low"] .tag-foot,
+  .phone[data-fidelity="low"] .tag-controls,
+  .phone[data-fidelity="low"] .tag-flag{color:#555;}
+  .phone[data-fidelity="low"] .receipt-status{border-color:#888;color:#444;}
+  .phone[data-fidelity="low"] .truth-list svg{color:#555;}
+  .phone[data-fidelity="low"] .complete-quote{border-left:2px solid #555;color:#555;}
+  .phone[data-fidelity="low"] .error-mark{color:#444;}
+  .phone[data-fidelity="low"] .screen-inner{animation:none;}
+  .phone[data-fidelity="low"] .art-stage,
+  .phone[data-fidelity="low"] .art-layer{transition:none;}
+  .phone[data-fidelity="low"] .demo-ribbon svg{opacity:.65;}
+
+  /* ---------- dialog ---------- */
+  .reset-dialog{
+    width:min(420px,calc(100vw - 32px));
+    padding:0;
+    border:1px solid var(--line);
+    border-radius:10px;
+    background:var(--surface);
+    color:var(--ink);
+    box-shadow:0 32px 90px -28px rgba(20,30,48,.55);
+  }
+  .reset-dialog::backdrop{background:rgba(23,32,50,.48);backdrop-filter:blur(3px);}
+  .dialog-inner{padding:24px 24px 20px;}
+  .dialog-kicker{color:var(--coral-deep);font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;}
+  .dialog-inner h2{
+    margin:8px 0 8px;
+    font-family:var(--serif);
+    font-size:26px;
+    line-height:1.3;
+    font-weight:600;
+  }
+  .dialog-inner p{color:var(--muted);font-size:12px;line-height:1.8;}
+  .dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px;}
+  .dialog-actions .btn{width:auto;min-width:106px;min-height:44px;font-size:13px;}
+
+  @keyframes screen-in{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:none;}}
+  @keyframes scan-sweep{0%{transform:translateY(-110%);}55%,100%{transform:translateY(110%);}}
+  @keyframes load-move{0%{transform:translateX(-110%);}60%,100%{transform:translateX(240%);}}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{
+      animation-duration:.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.001ms !important;
+      scroll-behavior:auto !important;
+    }
+    .screen-inner{animation:none;}
+    .loading-art::after,.spinner::before{animation:none;}
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:1080px){
+    .workspace{
+      grid-template-columns:minmax(0,1fr) minmax(378px,410px);
+      column-gap:42px;
+    }
+    .site-header,.workspace,.site-footer{padding-left:28px;padding-right:28px;}
+    .hero-title{font-size:clamp(40px,5vw,58px);}
+  }
+  @media (max-width:920px){
+    .workspace{
+      grid-template-columns:1fr;
+      grid-template-areas:"intro" "prototype" "notes";
+      row-gap:34px;
+      padding-top:36px;
+    }
+    .intro,.notes{max-width:680px;}
+    .prototype{max-width:440px;width:100%;margin:0 auto;}
+    .hero-title{font-size:clamp(42px,8vw,62px);}
+    .site-footer{flex-direction:column;gap:8px;}
+    .site-footer .footer-mark{text-align:left;}
+  }
+  @media (max-width:600px){
+    body{font-size:15px;}
+    body::before{opacity:.04;}
+    .site-header{padding:17px 16px 0;align-items:flex-start;}
+    .brand-mark{width:31px;height:31px;flex-basis:31px;}
+    .brand-name{font-size:17px;}
+    .brand-sub{font-size:8px;letter-spacing:.1em;}
+    .header-meta{gap:5px;justify-content:flex-end;}
+    .pill{min-height:26px;padding:0 8px;font-size:9px;}
+    .header-note{display:none;}
+    .workspace{padding:28px 12px 42px;row-gap:26px;}
+    .intro{max-width:none;padding:0 4px;}
+    .hero-title{font-size:clamp(39px,12vw,56px);margin:13px 0 15px;}
+    .hero-lede{font-size:14px;line-height:1.85;}
+    .hero-tags{margin-top:16px;}
+    .concept-list{margin-top:26px;}
+    .concept-item{padding:14px 0;}
+    .concept-item h2{font-size:15px;}
+    .concept-item p{font-size:12px;}
+    .prototype{max-width:none;}
+    .utility{margin:0 0 7px;padding:8px;border-radius:8px;}
+    .utility-actions{gap:4px;}
+    .mini-toggle{padding:0 5px;font-size:9px;}
+    .seg button{min-height:32px;padding:0 8px;}
+    .reset-button{width:34px;height:34px;}
+    .phone-frame{
+      width:100%;
+      padding:0;
+      border-radius:28px;
+      background:transparent;
+      box-shadow:none;
+    }
+    .phone-frame::before,.phone-frame::after{display:none;}
+    .phone{
+      width:100%;
+      height:min(770px,calc(100svh - 176px));
+      min-height:600px;
+      border-radius:28px;
+      border:1px solid rgba(31,41,64,.16);
+      box-shadow:0 22px 55px -34px rgba(31,41,64,.48);
+    }
+    .screen-scroll{padding-left:18px;padding-right:18px;}
+    .screen-actions{padding-left:18px;padding-right:18px;}
+    .state-readout{align-items:flex-start;flex-wrap:wrap;}
+    .local-only{width:100%;padding-left:16px;text-align:left;}
+    .notes{padding-top:20px;}
+    .notes-grid{grid-template-columns:1fr;gap:15px;}
+    .journey-step strong{font-size:10px;}
+    .site-footer{padding:18px 16px 28px;}
+    .site-footer p{font-size:9px;}
+    .tag-card{width:224px;height:338px;}
+    .tag-art{height:180px;}
+    .tag-title{font-size:15px;}
+    .layout-grid{gap:8px;}
+    .layout-option{padding:6px 6px 10px;}
+    .option-label strong{font-size:13px;}
+    .confirm-summary{grid-template-columns:105px minmax(0,1fr);gap:11px;padding:10px;}
+    .confirm-summary .tee-widget{width:105px;}
+  }
+  @media (max-width:365px){
+    .appbar-brand{display:none;}
+    .appbar-left{min-width:44px;}
+    .header-meta .pill{display:none;}
+    .screen-scroll{padding-left:16px;padding-right:16px;}
+    .screen-actions{padding-left:16px;padding-right:16px;}
+    .tag-card{width:210px;height:326px;}
+    .tag-art{height:172px;}
+    .tag-body{grid-template-columns:minmax(0,1fr) 46px;padding-left:10px;padding-right:10px;}
+    .tag-qr{width:46px;height:46px;}
+    .layout-option .tee-widget{width:100%;}
+    .option-label strong{font-size:12px;}
+  }
+  @media (min-width:1200px) and (min-height:930px){
+    .prototype{position:sticky;top:24px;}
+  }
+  /* User entry is the default; review chrome is opt-in before first paint. */
+  html:not([data-mode="review"]) body{overflow:hidden;background:var(--surface);}
+  html:not([data-mode="review"]) body::before{display:none;}
+  html:not([data-mode="review"]) .site-header,
+  html:not([data-mode="review"]) .intro,
+  html:not([data-mode="review"]) .notes,
+  html:not([data-mode="review"]) .site-footer,
+  html:not([data-mode="review"]) .utility,
+  html:not([data-mode="review"]) .control-note,
+  html:not([data-mode="review"]) .state-readout,
+  html:not([data-mode="review"]) .phone-status,
+  html:not([data-mode="review"]) .page-label,
+  html:not([data-mode="review"]) .ld-mode-badge{display:none;}
+  html:not([data-mode="review"]) .workspace{display:block;padding:0;max-width:none;margin:0;}
+  html:not([data-mode="review"]) .prototype{position:static;width:100%;max-width:620px;margin:0 auto;}
+  html:not([data-mode="review"]) .phone-frame{width:100%;padding:0;border-radius:0;background:none;box-shadow:none;}
+  html:not([data-mode="review"]) .phone-frame::before,
+  html:not([data-mode="review"]) .phone-frame::after{display:none;}
+  html:not([data-mode="review"]) .phone{width:100%;height:100vh;height:100dvh;min-height:0;border:0;border-radius:0;box-shadow:none;padding-top:env(safe-area-inset-top);}
+  html:not([data-mode="review"]) .appbar-brand{display:inline;}
+  .demo-ribbon{font-size:11px;min-height:34px;flex-wrap:wrap;}
+  .ribbon-detail{border:0;background:transparent;color:inherit;text-decoration:underline;min-height:32px;padding:0 4px;font-size:11px;}
+  .entry-intro{margin-bottom:14px;}
+  .entry-intro .screen-heading{font-size:25px;}
+  .entry-identity{font-size:12px;color:var(--coral-deep);font-weight:600;}
+  .entry-intro .screen-lede{font-size:12px;}
+  .entry-links{display:flex;gap:14px;flex-wrap:wrap;}
+  .entry-links .link-button{min-height:36px;}
+  .art-to-tee{display:grid;grid-template-columns:minmax(0,1fr) 20px 86px;gap:8px;align-items:center;}
+  .art-to-tee .art-stage,.art-to-tee .art-stage.is-revealed{height:192px;}
+  .art-to-tee .art-layer--full{object-fit:contain;}
+  .relation-arrow{color:var(--coral-deep);font-size:20px;text-align:center;}
+  .relation-tee figcaption{text-align:center;font-size:10px;color:var(--muted);}
+  .share-field{display:block;width:100%;min-height:145px;resize:vertical;margin-top:10px;padding:10px;border:1px solid var(--line-strong);border-radius:4px;background:var(--white);color:var(--ink);font:13px/1.7 var(--sans);}
+  .share-status{min-height:24px;margin-top:10px;color:var(--ink-soft);font-size:12px;}
+  .dialog-inner .detail-copy{margin-top:12px;}
+  .dialog-inner .detail-copy strong{color:var(--ink);}
+  .reset-dialog{max-height:calc(100dvh - 32px);overflow:auto;}
+  .dialog-actions{flex-wrap:wrap;}
+  .tag-qr img{width:100%;height:100%;object-fit:contain;background:#fff;}
+  .tag-qr.has-qr{border:0;background:#fff;}
+  .tag-qr.has-qr::before,.phone[data-fidelity="low"] .tag-qr.has-qr::after{display:none;}
+  .next-step{margin-top:18px;padding:14px;border:1px solid var(--line);border-radius:6px;}
+  .next-step h3{font-size:14px;margin-bottom:5px;}
+  .next-step p{font-size:12px;color:var(--muted);}
+  .secondary-action{width:100%;margin-top:4px;}
+  @media(max-height:650px){.art-to-tee .art-stage,.art-to-tee .art-stage.is-revealed{height:150px;}.entry-intro{margin-bottom:8px;}}
+</style>
+<script>document.documentElement.dataset.mode = new URLSearchParams(location.search).get('mode') === 'review' ? 'review' : 'user';</script>
+</head>
+<body>
+<a class="skip-link" href="#heroTitle">跳到页面说明</a>
+
+<header class="site-header">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+        <circle cx="12" cy="12" r="3.2"></circle>
+        <path d="M12 2.5v4M12 17.5v4M2.5 12h4M17.5 12h4M5.3 5.3l2.8 2.8M15.9 15.9l2.8 2.8M18.7 5.3l-2.8 2.8M8.1 15.9l-2.8 2.8"></path>
+      </svg>
+    </span>
+    <div>
+      <p class="brand-name">爱分你</p>
+      <p class="brand-sub">A painting, worn out loud</p>
+    </div>
+  </div>
+  <div class="header-meta">
+    <span class="pill"><span class="pill-dot"></span>交互原型 v1.0</span>
+    <span class="header-note">375 px · 单文件 · 可离线</span>
+  </div>
+</header>
+
+<main class="workspace">
+  <section class="intro" aria-labelledby="heroTitle">
+    <p class="eyebrow">Concept prototype / 把一幅画穿出去</p>
+    <h1 class="hero-title" id="heroTitle" tabindex="-1">
+      <span>把一幅画，</span>
+      <span class="accent">穿出去。</span>
+    </h1>
+    <p class="hero-lede">吊牌上只露出一角。扫码后，整幅画在手里展开——再选一种穿法，走到一份不产生订单的意向为止。</p>
+    <div class="hero-tags" aria-label="原型属性">
+      <span>实体吊牌 → 首屏</span>
+      <span>局部 → 完整</span>
+      <span>同一幅画 / 两种版式</span>
+      <span>0 真实交易</span>
+    </div>
+
+    <div class="concept-list" aria-label="设计要点">
+      <div class="concept-item">
+        <span class="concept-num">01</span>
+        <div>
+          <h2>一角，是邀请</h2>
+          <p>吊牌不把画讲完，只留下一个“想看看整幅”的理由。</p>
+        </div>
+      </div>
+      <div class="concept-item">
+        <span class="concept-num">02</span>
+        <div>
+          <h2>授权，先于故事</h2>
+          <p>画者姓名、肖像与故事没有授权就不出现；版式可以预览，信息不虚构。</p>
+        </div>
+      </div>
+      <div class="concept-item">
+        <span class="concept-num">03</span>
+        <div>
+          <h2>只走到意向</h2>
+          <p>没有支付、订单与联系方式收集；意向只在本页，分享内容由你自行复制与发送。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="prototype" aria-label="可点击交互原型">
+    <div class="utility" aria-label="演示控制">
+      <div class="utility-status">
+        <span class="live-dot" aria-hidden="true"></span>
+        <strong>演示控制</strong>
+        <span aria-hidden="true">/</span>
+        <span class="utility-page" id="utilityPage">D01</span>
+      </div>
+      <div class="utility-actions">
+        <div class="seg" role="group" aria-label="视觉保真度">
+          <button type="button" class="fidelity-btn" data-fidelity="high" aria-pressed="true">高保真</button>
+          <button type="button" class="fidelity-btn" data-fidelity="low" aria-pressed="false">低保真</button>
+        </div>
+        <label class="mini-toggle">
+          <input type="checkbox" id="failLoadToggle">
+          <span class="switch" aria-hidden="true"></span>
+          <span>加载失败</span>
+        </label>
+        <label class="mini-toggle">
+          <input type="checkbox" id="failSubmitToggle">
+          <span class="switch" aria-hidden="true"></span>
+          <span>提交失败</span>
+        </label>
+        <button type="button" class="reset-button" id="resetTopBtn" aria-label="重置演示">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 4v6h6"></path>
+            <path d="M4.8 15.5A8 8 0 1 0 6 6.4L4 9"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <p class="control-note" id="controlNote" aria-live="polite">失败开关只影响下一次对应步骤；重试会成功一次，选择不受影响。</p>
+
+    <div class="phone-frame">
+      <div class="phone" id="phone" data-fidelity="high">
+        <div class="phone-status" aria-hidden="true">
+          <span>9:41</span>
+          <span class="status-icons"><i class="signal"></i><i class="wifi"></i><i class="battery"></i></span>
+        </div>
+
+        <div class="appbar">
+          <div class="appbar-left">
+            <button type="button" class="icon-button is-hidden" id="backBtn" aria-label="返回上一步">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+            <span class="appbar-brand">爱分你</span>
+          </div>
+          <div class="appbar-right">
+            <span class="ld-mode-badge" aria-hidden="true">LOW-FI</span>
+            <span class="page-label" id="pageLabel">D01</span>
+            <div class="stepper" id="stepper" role="img" aria-label="流程进度：第1步，共4步">
+              <i class="is-on is-current"></i><i></i><i></i><i></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-ribbon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <rect x="5" y="10" width="14" height="10" rx="1"></rect>
+            <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+          </svg>
+          <span>课程演示 · 无捐赠 / 交易 · 意向仅存本页</span>
+          <button type="button" class="ribbon-detail" data-open-trust>查看声明</button>
+        </div>
+
+        <div class="screens" id="screens">
+          <!-- D01 吊牌 -->
+          <section class="screen screen--tag" data-screen="tag" aria-labelledby="tagTitle">
+            <div class="screen-scroll">
+              <div class="screen-inner">
+                <p class="screen-eyebrow">实体吊牌 · 演示预览</p>
+                <h2 class="screen-heading" id="tagTitle" tabindex="-1">先看见一角。</h2>
+                <p class="screen-lede">画只露出一小块。剩下的，等你自己打开。</p>
+
+                <div class="tag-scene">
+                  <span class="tag-string" aria-hidden="true"></span>
+                  <div class="tag-card" id="tagCard" data-side="front">
+                    <span class="tag-punch" aria-hidden="true"></span>
+
+                    <div class="tag-face tag-face--front is-active" data-face="front">
+                      <div class="tag-art">
+                        <svg viewBox="300 68 280 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="抽象画作《潮汐留声》的局部，珊瑚色圆形、靛蓝色块与赭黄线条">
+                          <use href="#artwork" width="600" height="760"></use>
+                        </svg>
+                        <span class="tag-art-label">画的一角</span>
+                      </div>
+                      <div class="tag-body">
+                        <div>
+                          <p class="tag-kicker">把一幅画穿出去</p>
+                          <p class="tag-title">扫一下，<br>看看整幅画。</p>
+                        </div>
+                        <div class="tag-qr" id="entryQr" aria-label="入口二维码尚未提供">
+                          <span id="entryQrPlaceholder">入口码<br>待提供</span>
+                          <img id="entryQrImage" alt="课程演示用户入口二维码" hidden>
+                        </div>
+                      </div>
+                      <div class="tag-foot"><span>爱分你</span><span>DEMO TAG · 非实物</span></div>
+                    </div>
+
+                    <div class="tag-face tag-face--back" data-face="back" aria-hidden="true" inert>
+                      <span class="tag-back-mark">BACK / 02</span>
+                      <p class="tag-back-kicker">这张吊牌，不负责讲完</p>
+                      <p class="tag-back-quote">“这一角，<br>只是开始。”</p>
+                      <p class="tag-back-body">设计构想：让一幅画进入 T 恤。真实画者资料须核实并获得授权后才能展示。</p>
+                      <div class="tag-back-rule" aria-hidden="true"></div>
+                      <p class="tag-back-fine">演示吊牌 · 非实物<br>授权素材待核实 · 入口码见正面</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tag-controls">
+                  <button type="button" class="link-button" id="tagFlip" aria-pressed="false">翻到背面</button>
+                  <span class="tag-flag" id="entryQrStatus">非实物 · 入口码待提供</span>
+                </div>
+                <p class="inline-note">画作为课程示意。HTTP(S) 评审页仅在同目录入口码成功加载后显示；实体扫码与跨设备可达性仍须另行验证。</p>
+              </div>
+            </div>
+            <div class="screen-actions">
+              <button type="button" class="btn btn-primary" id="scanBtn">
+                演示入口 · 模拟扫码
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path>
+                  <path d="M8 12h8"></path>
+                </svg>
+              </button>
+              <p class="action-note">此按钮模拟进入；真实扫码请使用已提供的入口码</p>
+            </div>
+          </section>
+
+          <!-- P01 加载 -->
+          <section class="screen screen--loading" data-screen="loading" aria-labelledby="loadingTitle">
+            <div class="screen-scroll">
+              <div class="loading-art" aria-hidden="true">
+                <svg viewBox="300 68 280 250" preserveAspectRatio="xMidYMid slice">
+                  <use href="#artwork" width="600" height="760"></use>
+                </svg>
+                <span class="scan-line"></span>
+              </div>
+              <div class="loading-copy">
+                <p class="screen-eyebrow">P01 · 正在打开</p>
+                <h2 class="screen-heading" id="loadingTitle" tabindex="-1">把那一角，<br>展开。</h2>
+                <p class="screen-lede">正在准备作品与 T 恤预览。</p>
+                <div class="load-meter" role="progressbar" aria-label="作品加载进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="55">
+                  <span></span>
+                </div>
+                <p class="loading-note">正在准备同一幅画…</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- P02 作品 -->
+          <section class="screen screen--art" data-screen="art" aria-labelledby="artTitle">
+            <div class="screen-scroll">
+              <div class="screen-inner">
+                <div class="entry-intro">
+                  <p class="entry-identity" id="entryIdentity">爱分你公益产品入口 · 课程概念</p>
+                  <h2 class="screen-heading" id="artTitle" tabindex="-1">让一幅画，走进日常。</h2>
+                  <p class="screen-lede" id="designRelation">设计构想：把作品的一角或全貌放上 T 恤，让穿着与分享成为认识作品的入口。</p>
+                  <div class="entry-links"><button type="button" class="link-button" id="trustBtn" data-open-trust>这是什么项目？查看事实与边界</button></div>
+                </div>
+                <div class="art-to-tee" aria-label="同一幅示意作品进入T恤的设计关系">
+                <div class="art-stage" id="artStage">
+                  <svg class="art-layer art-layer--crop" viewBox="300 68 280 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="吊牌上的画作局部">
+                    <use href="#artwork" width="600" height="760"></use>
+                  </svg>
+                  <svg class="art-layer art-layer--full" viewBox="0 0 600 760" preserveAspectRatio="xMidYMid meet" role="img" aria-label="完整抽象画作《潮汐留声》：靛蓝、珊瑚与赭黄构成的门与潮汐">
+                    <use href="#artwork" width="600" height="760"></use>
+                  </svg>
+                  <span class="art-stamp">课程示意作品</span>
+                  <span class="art-state" id="artCorner">吊牌局部</span>
+                </div>
+                <span class="relation-arrow" aria-hidden="true">→</span>
+                <figure class="relation-tee">
+                  <span class="tee-widget" data-print="full" aria-hidden="true">
+                    <svg class="tee-svg" viewBox="0 0 240 280"><use href="#tee-back"></use></svg>
+                    <span class="print"><svg viewBox="0 0 600 760" preserveAspectRatio="xMidYMid slice"><use href="#artwork" width="600" height="760"></use></svg></span>
+                  </span><figcaption>同一作品 · T 恤构想<br>非默认选择</figcaption>
+                </figure>
+                </div>
+                <div class="art-caption">
+                  <button type="button" class="link-button" id="artToggle" aria-pressed="false">展开整幅画</button>
+                  <span>同一幅画 · 局部 → 完整</span>
+                </div>
+
+                <div class="work-copy">
+                  <p class="screen-eyebrow">作品 01 · SVG 抽象画</p>
+                  <h3 class="screen-heading">《潮汐留声》</h3>
+                  <p class="work-meta">靛蓝 / 珊瑚 / 赭黄 · SVG 示意</p>
+                  <p class="screen-lede">从吊牌上的一角，看到画里的门、太阳与潮汐。不选穿法也可以参与：把这份课程构想分享给朋友，一起讨论作品如何进入日常。</p>
+                </div>
+
+                <section class="creator-card" id="creatorCard" aria-labelledby="creatorTitle">
+                  <div class="creator-head">
+                    <span class="creator-avatar" aria-hidden="true">?</span>
+                    <div class="creator-copy">
+                      <div class="creator-title-row">
+                        <h3 id="creatorTitle">画它的人</h3>
+                        <span class="lock-badge">
+                          <svg viewBox="0 0 24 24" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="1"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
+                          未授权
+                        </span>
+                      </div>
+                      <p>真实姓名、肖像与创作故事，需本人或监护人书面授权后才展示。</p>
+                    </div>
+                  </div>
+                  <button type="button" class="link-button" id="creatorToggle" aria-expanded="false" aria-controls="creatorPlaceholder">查看授权后版式（占位）</button>
+                  <div class="creator-placeholder" id="creatorPlaceholder" hidden>
+                    <p class="placeholder-name">〔画者昵称 · 授权后填〕</p>
+                    <p class="placeholder-quote">“〔一句由画者本人或监护人确认的话 · 授权后填〕”</p>
+                    <div class="placeholder-facts" aria-label="待授权信息">
+                      <span>年龄 · 待授权</span>
+                      <span>城市 · 待授权</span>
+                      <span>学画时间 · 待授权</span>
+                    </div>
+                    <p class="placeholder-caveat">这里只示意授权后的版式。未取得任何真实授权，姓名、肖像与故事均为占位，不是真实人物资料。</p>
+                  </div>
+                </section>
+
+                <section class="project-note" aria-labelledby="projectTitle">
+                  <h3 id="projectTitle">从理解，到参与</h3>
+                  <p>先看看作品与产品的关系，再决定分享构想，或选一种穿法留下本地意向。分享只帮助他人了解课程设计，不代表已向创作者提供资助。</p>
+                </section>
+              </div>
+            </div>
+            <div class="screen-actions">
+              <button type="button" class="btn btn-primary" id="toLayoutBtn">看看两种穿法</button>
+              <button type="button" class="text-button secondary-action" id="shareArtBtn" data-open-share>不选版式，分享课程构想</button>
+            </div>
+          </section>
+
+          <!-- P03 版式 -->
+          <section class="screen screen--layout" data-screen="layout" aria-labelledby="layoutTitle">
+            <div class="screen-scroll">
+              <div class="screen-inner">
+                <p class="screen-eyebrow">P03 · 穿法</p>
+                <h2 class="screen-heading" id="layoutTitle" tabindex="-1">同一幅画，<br>两种穿法。</h2>
+                <p class="screen-lede">画放在哪里，由你来选。没有默认项；也可以返回作品页直接分享。</p>
+
+                <fieldset class="layout-picker">
+                  <legend class="sr-only">选择 T 恤版式</legend>
+                  <div class="layout-grid">
+                    <label class="layout-option" data-layout="chest">
+                      <input class="layout-radio" type="radio" name="teeLayout" value="chest">
+                      <span class="selected-label" aria-hidden="true">已选</span>
+                      <span class="option-check" aria-hidden="true"></span>
+                      <span class="tee-widget" data-print="chest" aria-hidden="true">
+                        <svg class="tee-svg" viewBox="0 0 240 280"><use href="#tee-front"></use></svg>
+                        <span class="print"><svg viewBox="300 68 280 250" preserveAspectRatio="xMidYMid slice"><use href="#artwork" width="600" height="760"></use></svg></span>
+                      </span>
+                      <span class="option-label">
+                        <strong>小幅胸前</strong>
+                        <small>画的一角 · 小面积</small>
+                      </span>
+                    </label>
+
+                    <label class="layout-option" data-layout="full">
+                      <input class="layout-radio" type="radio" name="teeLayout" value="full">
+                      <span class="selected-label" aria-hidden="true">已选</span>
+                      <span class="option-check" aria-hidden="true"></span>
+                      <span class="tee-widget" data-print="full" aria-hidden="true">
+                        <svg class="tee-svg" viewBox="0 0 240 280"><use href="#tee-back"></use></svg>
+                        <span class="print"><svg viewBox="0 0 600 760" preserveAspectRatio="xMidYMid slice"><use href="#artwork" width="600" height="760"></use></svg></span>
+                      </span>
+                      <span class="option-label">
+                        <strong>大幅背面</strong>
+                        <small>完整画作 · 大面积</small>
+                      </span>
+                    </label>
+                  </div>
+                </fieldset>
+
+                <p class="selection-summary" id="selectionSummary" hidden>
+                  <span>SELECTED</span>
+                  <strong id="selectionText"></strong>
+                </p>
+                <p class="inline-note">两种版式共用同一张画。T 恤形状、面料与颜色都只是演示，不代表真实商品或库存。</p>
+              </div>
+            </div>
+            <div class="screen-actions">
+              <button type="button" class="btn btn-primary" id="continueLayoutBtn" disabled>继续确认</button>
+              <p class="action-note" id="layoutHint">请先选择一种版式</p>
+            </div>
+          </section>
+
+          <!-- P04 确认 -->
+          <section class="screen screen--confirm" data-screen="confirm" aria-labelledby="confirmTitle">
+            <div class="screen-scroll">
+              <div class="screen-inner">
+                <p class="screen-eyebrow">P04 · 意向确认</p>
+                <h2 class="screen-heading" id="confirmTitle" tabindex="-1">最后看一眼。</h2>
+                <p class="screen-lede">确认你喜欢的穿法，在当前页面留下一个本地意向。</p>
+
+                <div class="confirm-summary">
+                  <span class="tee-widget tee-widget--confirm" id="confirmTee" data-print="chest" aria-hidden="true">
+                    <svg class="tee-svg" viewBox="0 0 240 280"><use id="confirmTeeUse" href="#tee-front"></use></svg>
+                    <span class="print"><svg id="confirmPrint" viewBox="300 68 280 250" preserveAspectRatio="xMidYMid slice"><use href="#artwork" width="600" height="760"></use></svg></span>
+                  </span>
+                  <div>
+                    <p class="summary-kicker">你选的</p>
+                    <p class="summary-title">《潮汐留声》<span id="confirmLayout">小幅胸前</span></p>
+                    <p class="summary-meta">棉白演示款<br>尺码与价格未定</p>
+                  </div>
+                </div>
+
+                <dl class="detail-list">
+                  <div class="detail-row"><dt>载体</dt><dd>T 恤（演示款）</dd></div>
+                  <div class="detail-row"><dt>版式</dt><dd id="confirmLayoutRow">小幅胸前</dd></div>
+                  <div class="detail-row"><dt>金额</dt><dd>不展示 · 不支付</dd></div>
+                  <div class="detail-row"><dt>联系信息</dt><dd>不收集</dd></div>
+                </dl>
+
+                <div class="demo-notice">
+                  <strong>意向只留在本页</strong>
+                  <p>不送达项目方，刷新即清除；完整边界见顶部“查看声明”。</p>
+                </div>
+              </div>
+            </div>
+            <div class="screen-actions">
+              <button type="button" class="btn btn-primary" id="submitBtn">确认本地意向</button>
+              <button type="button" class="text-button" id="reselectFromConfirm">重新选版式</button>
+            </div>
+          </section>
+
+          <!-- P05 提交中 -->
+          <section class="screen screen--submitting" data-screen="submitting" aria-labelledby="submittingTitle">
+            <div class="screen-scroll">
+              <div class="spinner" aria-hidden="true"></div>
+              <p class="screen-eyebrow">P05 · 提交中</p>
+              <h2 class="screen-heading" id="submittingTitle" tabindex="-1">正在模拟提交。</h2>
+              <p class="screen-lede">正在记录你选择的穿法，请稍候。</p>
+              <span class="local-chip">本地状态 · 无提交接口</span>
+            </div>
+          </section>
+
+          <!-- P06 完成 -->
+          <section class="screen screen--complete" data-screen="complete" aria-labelledby="completeTitle">
+            <div class="screen-scroll">
+              <div class="screen-inner">
+                <div class="complete-hero">
+                  <span class="complete-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12.5l4.2 4.2L19 7"></path>
+                    </svg>
+                  </span>
+                  <p class="screen-eyebrow">P06 · 本地意向已确认</p>
+                  <h2 class="screen-heading" id="completeTitle" tabindex="-1">你的穿法意向，<br>已在本页记下。</h2>
+                  <p class="screen-lede">你表达了对这幅画进入 T 恤的偏好。此意向仅在当前页面内存中，刷新即清除，未送达项目方。</p>
+                </div>
+
+                <div class="receipt">
+                  <div class="receipt-head">
+                    <div>
+                      <p class="receipt-label">本地演示回执</p>
+                      <code id="demoId">DEMO-00000000-000</code>
+                    </div>
+                    <span class="receipt-status">仅演示</span>
+                  </div>
+                  <div class="receipt-layout">
+                    <span>所选版式</span>
+                    <strong id="completeLayout">小幅胸前</strong>
+                  </div>
+                  <p class="receipt-fine">在本地生成，不是订单号，也不是购买凭证。</p>
+                </div>
+
+                <section class="next-step" aria-labelledby="nextStepTitle">
+                  <h3 id="nextStepTitle">下一步：让朋友也看看这个构想</h3>
+                  <p>复制课程说明或入口链接，自行决定是否发送。复制不等于已分享，也不产生捐赠。</p>
+                </section>
+
+                <p class="complete-quote">把一幅画穿出去，不急着把一件东西卖出去。</p>
+
+                <div class="complete-extra-actions">
+                  <button type="button" class="text-button small" id="startOverBtn">从头开始</button>
+                </div>
+              </div>
+            </div>
+            <div class="screen-actions">
+              <button type="button" class="btn btn-primary" id="shareCompleteBtn" data-open-share>分享这份课程构想</button>
+              <div class="complete-extra-actions">
+                <button type="button" class="text-button" id="chooseAgainBtn">重新选一种穿法</button>
+                <button type="button" class="text-button" id="backToArtBtn">再看一眼这幅画</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- E01 加载失败 -->
+          <section class="screen screen--error screen--error-load" data-screen="errorLoad" aria-labelledby="errorLoadTitle">
+            <div class="screen-scroll">
+              <div class="error-mark" aria-hidden="true">
+                <svg viewBox="0 0 120 104" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="12" y="17" width="96" height="70" rx="4" stroke-dasharray="5 6"></rect>
+                  <path d="M41 57l12 12M65 45L53 57l12 12M65 45l12 12-12 12"></path>
+                  <circle cx="96" cy="20" r="7" fill="var(--surface)"></circle>
+                  <path d="M93 20h6M96 17v6"></path>
+                </svg>
+              </div>
+              <div class="error-copy">
+                <p class="screen-eyebrow">E01 · 加载失败</p>
+                <h2 class="screen-heading" id="errorLoadTitle" tabindex="-1">这次没打开。</h2>
+                <p class="screen-lede">这里模拟了一次加载中断。画作仍在，可以重新打开。</p>
+                <span class="local-chip">模拟状态 · 可重试</span>
+              </div>
+            </div>
+            <div class="screen-actions">
+              <button type="button" class="btn btn-primary" id="retryLoadBtn">重试一次</button>
+              <button type="button" class="text-button" id="backTagBtn">回到吊牌</button>
+            </div>
+          </section>
+
+          <!-- E02 提交失败 -->
+          <section class="screen screen--error screen--error-submit" data-screen="errorSubmit" aria-labelledby="errorSubmitTitle">
+            <div class="screen-scroll">
+              <div class="error-mark" aria-hidden="true">
+                <svg viewBox="0 0 120 104" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M26 73V38a10 10 0 0 1 10-10h36a10 10 0 0 1 10 10v24"></path>
+                  <path d="M82 62l-13 14-13-14"></path>
+                  <path d="M69 76V49"></path>
+                  <path d="M18 88c9-10 21-10 30 0M72 88c9-10 21-10 30 0" stroke-dasharray="4 6"></path>
+                </svg>
+              </div>
+              <div class="error-copy">
+                <p class="screen-eyebrow">E02 · 提交失败</p>
+                <h2 class="screen-heading" id="errorSubmitTitle" tabindex="-1">这次没记下意向。</h2>
+                <p class="screen-lede">本地记录步骤模拟中断。你选的版式还保留着，可以重试。</p>
+                <div class="draft-chip">已保留：<strong id="errorLayout">小幅胸前</strong></div>
+              </div>
+            </div>
+            <div class="screen-actions error-actions-stack">
+              <button type="button" class="btn btn-primary" id="retrySubmitBtn">重试一次</button>
+              <button type="button" class="text-button" id="backConfirmBtn">返回确认页</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <div class="state-readout">
+      <span class="state-pulse" aria-hidden="true"></span>
+      <div class="state-copy">
+        <span class="state-kicker">当前状态</span>
+        <strong class="state-page" id="statePage">D01 · 吊牌</strong>
+        <span class="state-detail" id="stateDetail">等待模拟扫码</span>
+      </div>
+      <span class="local-only">本地流程 / 无提交接口</span>
+    </div>
+  </section>
+
+  <aside class="notes" aria-labelledby="notesTitle">
+    <div class="notes-heading">
+      <h2 id="notesTitle">怎么试这一遍</h2>
+      <span>ONE PATH / 4 STEPS</span>
+    </div>
+    <div class="journey" aria-label="流程步骤">
+      <div class="journey-step is-current" data-step="0"><span>01</span><strong>看见一角<br>模拟扫码</strong></div>
+      <div class="journey-step" data-step="1"><span>02</span><strong>展开完整<br>画作</strong></div>
+      <div class="journey-step" data-step="2"><span>03</span><strong>选择穿法<br>确认意向</strong></div>
+      <div class="journey-step" data-step="3"><span>04</span><strong>只到演示<br>完成反馈</strong></div>
+    </div>
+
+    <div class="notes-grid">
+      <div class="note-block">
+        <h3>操作顺序</h3>
+        <ol>
+          <li>在吊牌上翻面，再点「模拟扫码」。</li>
+          <li>等整幅画自动展开，试试点「收起」。</li>
+          <li>点开「查看授权后版式（占位）」。</li>
+          <li>自己选一种穿法，走到提交与完成。</li>
+          <li>在完成后重选版式，或用右上角重置。</li>
+        </ol>
+      </div>
+      <div class="note-block">
+        <h3>状态与异常</h3>
+        <p>加载失败和提交失败开关在手机上方；E01/E02 都有重试和另一条路。每次只模拟一次失败，重试会成功。</p>
+      </div>
+    </div>
+
+    <div class="boundary-callout">
+      <strong>边界写死：</strong>不接支付、不生成订单、不收联系方式、不向项目方提交意向；分享仅复制课程说明与当前 HTTPS 用户入口。外部入口二维码由部署方提供，加载成功后才展示。画作为自绘 SVG 抽象占位，创作者姓名与故事均为占位；不出现资金比例、机构背书或收益承诺。本页只做原型，不替代概念提案、设计报告或验证报告，也没有任何真实测试结果。
+    </div>
+  </aside>
+</main>
+
+<footer class="site-footer">
+  <p>原创演示占位，非真实公益作品。此原型只验证交互路径与授权后的版式位置；不包含真实用户研究、测试照片、访谈结果或任何已确认的项目数据。</p>
+  <p class="footer-mark">爱分你 · concept prototype<br>P01—P06 / E01—E02</p>
+</footer>
+
+<!-- 内联 SVG 资源：画作与 T 恤 -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="artGrain" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="2" seed="7" stitchTiles="stitch"></feTurbulence>
+      <feColorMatrix type="saturate" values="0"></feColorMatrix>
+      <feComponentTransfer><feFuncA type="linear" slope="0.2"></feFuncA></feComponentTransfer>
+    </filter>
+    <linearGradient id="indigoWash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2D406A"></stop>
+      <stop offset="1" stop-color="#1F2E50"></stop>
+    </linearGradient>
+    <symbol id="artwork" viewBox="0 0 600 760">
+      <rect width="600" height="760" fill="#F2E5D3"></rect>
+
+      <path d="M0 0H348C370 61 356 120 321 171C288 220 282 277 313 331C344 386 346 439 312 494C277 552 222 592 218 657C215 708 236 738 247 760H0Z" fill="#24345B"></path>
+      <path d="M0 0H185C173 74 190 134 226 182C263 232 261 284 229 327C194 374 158 421 168 480C176 528 211 556 222 601C235 651 211 719 185 760H0Z" fill="url(#indigoWash)" opacity="0.86"></path>
+
+      <path d="M0 238H244" stroke="#E4B466" stroke-width="2" opacity="0.34"></path>
+      <path d="M0 509H181" stroke="#F2E5D3" stroke-width="1.5" opacity="0.38"></path>
+      <path d="M61 0V142M97 0V111M507 0V71M548 0V112" stroke="#F2E5D3" stroke-width="1.2" opacity="0.23"></path>
+      <path d="M73 92c22-18 47-22 74-11" fill="none" stroke="#D86B55" stroke-width="8" stroke-linecap="round" opacity="0.9"></path>
+      <path d="M86 112c21-12 42-14 62-7" fill="none" stroke="#E4B466" stroke-width="2" stroke-linecap="round" opacity="0.65"></path>
+
+      <circle cx="436" cy="211" r="119" fill="#D86B55"></circle>
+      <circle cx="436" cy="211" r="149" fill="none" stroke="#D86B55" stroke-width="1.5" opacity="0.55"></circle>
+      <circle cx="436" cy="211" r="177" fill="none" stroke="#E4B466" stroke-width="1.2" opacity="0.52"></circle>
+      <path d="M436 92v238M317 211h238" stroke="#F8EFE2" stroke-width="1.7" opacity="0.26"></path>
+      <path d="M350 296c26-34 56-51 94-53" fill="none" stroke="#F8EFE2" stroke-width="7" stroke-linecap="round" opacity="0.72"></path>
+      <path d="M526 51v117" stroke="#E4B466" stroke-width="8" stroke-linecap="round"></path>
+      <circle cx="530" cy="198" r="6" fill="#E4B466"></circle>
+      <path d="M557 353v69M574 371v34" stroke="#E4B466" stroke-width="2" stroke-linecap="round" opacity="0.8"></path>
+      <rect x="518" y="490" width="31" height="31" fill="#D86B55" transform="rotate(8 533.5 505.5)" opacity="0.92"></rect>
+      <path d="M477 556c24-13 50-11 76 5" fill="none" stroke="#F2E5D3" stroke-width="1.5" opacity="0.55"></path>
+
+      <path d="M62 760V579c0-91 73-165 163-165s163 74 163 165v181" fill="#F2E5D3"></path>
+      <path d="M98 760V589c0-70 57-127 127-127s127 57 127 127v171" fill="#D86B55"></path>
+      <path d="M145 760V605c0-45 36-81 80-81s80 36 80 81v155" fill="#1D2C4C"></path>
+      <circle cx="225" cy="664" r="37" fill="#E4B466"></circle>
+      <path d="M163 760c0-34 28-62 62-62s62 28 62 62" fill="#1D2C4C" opacity="0.36"></path>
+      <path d="M151 760V617c0-11 9-20 20-20M299 760V617c0-11-9-20-20-20" fill="none" stroke="#F2E5D3" stroke-width="1.2" opacity="0.38"></path>
+
+      <path d="M328 760c-18-76 42-118 106-133 55-13 107-47 166-108v241Z" fill="#7C907F"></path>
+      <path d="M352 760c-4-55 38-90 96-106 56-16 103-47 152-92" fill="none" stroke="#F2E5D3" stroke-width="9" stroke-linecap="round" opacity="0.63"></path>
+      <path d="M398 760c9-39 35-63 76-77 30-10 56-28 79-52" fill="none" stroke="#1D2C4C" stroke-width="1.5" opacity="0.35"></path>
+      <path d="M0 691c60-21 111-15 157 15 32 21 67 22 104 4 49-24 92-27 137-11" fill="none" stroke="#C7B79F" stroke-width="1.2" opacity="0.55"></path>
+      <path d="M54 736c32-9 60-6 86 8" fill="none" stroke="#F2E5D3" stroke-width="1.5" opacity="0.5"></path>
+
+      <path d="M0 0V760H600V0Z" fill="none" stroke="#1D2C4C" stroke-width="2" opacity="0.14"></path>
+      <rect width="600" height="760" filter="url(#artGrain)" opacity="0.38" style="mix-blend-mode:multiply"></rect>
+    </symbol>
+
+    <symbol id="tee-front" viewBox="0 0 240 280">
+      <path d="M78 27c11 16 73 16 84 0l45 21 26 56-31 15-13-21v169c-44 15-94 15-138 0V98L38 119 7 104 33 48Z" fill="currentColor" stroke="#C8BBA9" stroke-width="2.2" stroke-linejoin="round"></path>
+      <path d="M78 27c11 17 73 17 84 0" fill="none" stroke="#A99A87" stroke-width="2" stroke-linecap="round"></path>
+      <path d="M69 96c-3 50-2 102 0 160M171 96c3 50 2 102 0 160" fill="none" stroke="#C8BBA9" stroke-width="1.1" opacity="0.72"></path>
+      <path d="M40 119l20 7M200 119l-20 7" fill="none" stroke="#C8BBA9" stroke-width="1.2" opacity="0.8"></path>
+      <path d="M84 258h72" fill="none" stroke="#C8BBA9" stroke-width="1.2" opacity="0.65"></path>
+      <path d="M57 90c-7 20-12 31-19 42M183 90c7 20 12 31 19 42" fill="none" stroke="#DED3C2" stroke-width="1" opacity="0.9"></path>
+    </symbol>
+
+    <symbol id="tee-back" viewBox="0 0 240 280">
+      <path d="M78 27c11 16 73 16 84 0l45 21 26 56-31 15-13-21v169c-44 15-94 15-138 0V98L38 119 7 104 33 48Z" fill="currentColor" stroke="#C8BBA9" stroke-width="2.2" stroke-linejoin="round"></path>
+      <path d="M82 28c19 9 57 9 76 0" fill="none" stroke="#A99A87" stroke-width="2" stroke-linecap="round"></path>
+      <path d="M69 96c-3 50-2 102 0 160M171 96c3 50 2 102 0 160" fill="none" stroke="#C8BBA9" stroke-width="1.1" opacity="0.72"></path>
+      <path d="M40 119l20 7M200 119l-20 7" fill="none" stroke="#C8BBA9" stroke-width="1.2" opacity="0.8"></path>
+      <path d="M84 258h72" fill="none" stroke="#C8BBA9" stroke-width="1.2" opacity="0.65"></path>
+      <rect x="108" y="39" width="24" height="8" rx="1" fill="#D8CBB8" opacity="0.9"></rect>
+      <path d="M57 90c-7 20-12 31-19 42M183 90c7 20 12 31 19 42" fill="none" stroke="#DED3C2" stroke-width="1" opacity="0.9"></path>
+    </symbol>
+  </defs>
+</svg>
+
+<dialog class="reset-dialog" id="trustDialog" aria-labelledby="trustTitle">
+  <div class="dialog-inner">
+    <p class="dialog-kicker">事实与边界 / 用户声明</p>
+    <h2 id="trustTitle">这是什么入口？</h2>
+    <p>这是「爱分你公益产品入口」的课程概念，不是已获认证的公益项目页面。设计尝试用“画角 → 全画 → T 恤”连接作品理解、分享与穿着意向。</p>
+    <p class="detail-copy"><strong>目前可提供：</strong>自绘 SVG 示意作品、两种印花位置预览、本页意向回执和可复制的课程说明。</p>
+    <p class="detail-copy"><strong>尚未核实：</strong>项目运营主体、公益资质、受益对象、作品授权及资金流向。本页不作机构背书，不声称任何创作者因此获得收益。</p>
+    <p class="detail-copy"><strong>演示边界：</strong>没有捐赠、支付、订单或联系方式收集；意向仅存当前页内存，不发送给项目方。复制由你主动发起，后续发送由你决定。HTTPS 页面提供当前入口地址；本地或 HTTP 环境只提供说明。</p>
+    <p class="detail-copy">这份声明由课程原型制作方提供，不是项目认证或真实用户测试结论。在线访问可能产生静态托管平台的常规访问日志，本页没有自设分析或提交接口。</p>
+    <div class="dialog-actions"><button type="button" class="btn btn-primary" id="closeTrustBtn">知道了，继续看画</button></div>
+  </div>
+</dialog>
+
+<dialog class="reset-dialog" id="shareDialog" aria-labelledby="shareTitle">
+  <div class="dialog-inner">
+    <p class="dialog-kicker">低成本参与 / 自行决定是否发送</p>
+    <h2 id="shareTitle">分享一份课程构想</h2>
+    <p id="shareEnvironment"></p>
+    <label for="shareText" class="micro-label">可编辑的分享说明（可长按或全选复制）</label>
+    <textarea class="share-field" id="shareText" spellcheck="false"></textarea>
+    <p class="share-status" id="shareStatus" role="status" aria-live="polite"></p>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" id="selectShareBtn">全选文字</button>
+      <button type="button" class="btn btn-primary" id="copyShareBtn">复制分享说明</button>
+      <button type="button" class="text-button" id="closeShareBtn">返回，暂不分享</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="reset-dialog" id="resetDialog" aria-labelledby="resetTitle">
+  <div class="dialog-inner">
+    <p class="dialog-kicker">Reset / 仅重置本地状态</p>
+    <h2 id="resetTitle">回到吊牌？</h2>
+    <p>这会清除当前版式、授权占位展开状态与演示回执，并回到 D01。没有任何真实数据会被影响，因为本来就不会发送或保存。</p>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" id="cancelResetBtn">继续演示</button>
+      <button type="button" class="btn btn-primary" id="confirmResetBtn">重置</button>
+    </div>
+  </div>
+</dialog>
+
+<div class="sr-only" id="liveRegion" aria-live="polite" aria-atomic="true"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  const $ = (selector, root) => (root || document).querySelector(selector);
+  const $$ = (selector, root) => Array.from((root || document).querySelectorAll(selector));
+
+  const reviewMode = document.documentElement.dataset.mode === 'review';
+  const phone = $('#phone');
+  phone.dataset.mode = reviewMode ? 'review' : 'user';
+  const trustDialog = $('#trustDialog');
+  const shareDialog = $('#shareDialog');
+  const shareText = $('#shareText');
+  const shareStatus = $('#shareStatus');
+  const copyShareBtn = $('#copyShareBtn');
+  let shareSession = 0;
+
+  function openModal(dialog) {
+    if (typeof dialog.showModal === 'function') dialog.showModal();
+    else dialog.setAttribute('open', '');
+  }
+
+  function closeModal(dialog) {
+    if (typeof dialog.close === 'function') dialog.close();
+    else dialog.removeAttribute('open');
+  }
+
+  function userShareURL() {
+    const host = location.hostname.toLowerCase();
+    const localHost = host === 'localhost' || host.endsWith('.localhost') || host === '[::1]' || host === '[::]' || !host.includes('.') || /^(127\.|10\.|192\.168\.|169\.254\.|0\.|172\.(1[6-9]|2\d|3[01])\.)/.test(host);
+    // Never leak file paths, review parameters, fragments or local addresses.
+    return location.protocol === 'https:' && !localHost ? location.origin + location.pathname : '';
+  }
+
+  function selectShareText() {
+    shareText.focus();
+    shareText.select();
+    shareText.setSelectionRange(0, shareText.value.length);
+  }
+
+  function openShare() {
+    shareSession += 1;
+    copyShareBtn.disabled = false;
+    const url = userShareURL();
+    shareDialog.dataset.shareMode = url ? 'https-link' : 'text-only';
+    $('#shareEnvironment').textContent = url
+      ? '可复制当前 HTTPS 用户入口（不含评审参数）。可达性取决于当前托管服务，复制后由你决定是否发送。'
+      : '当前是本地文件、局域网或 HTTP 环境：仅提供课程说明，不把本地地址伪装为可分享公网链接。';
+    shareText.value = '我在看「爱分你公益产品入口」课程概念：从一幅示意画到 T 恤，探索作品进入日常的方式。欢迎一起看看、讨论。课程演示，无捐赠、支付或订单；不代表已获项目认证或已资助创作者。' + (url ? '\n课程演示入口：' + url : '\n当前未提供可分享的 HTTPS 入口，可先分享这段说明。');
+    shareStatus.textContent = '尚未复制或发送。';
+    shareStatus.dataset.result = 'idle';
+    openModal(shareDialog);
+  }
+
+  $$('[data-open-trust]').forEach(button => button.addEventListener('click', () => openModal(trustDialog)));
+  $$('[data-open-share]').forEach(button => button.addEventListener('click', openShare));
+  $('#closeTrustBtn').addEventListener('click', () => closeModal(trustDialog));
+  $('#closeShareBtn').addEventListener('click', () => closeModal(shareDialog));
+  $('#selectShareBtn').addEventListener('click', function () {
+    selectShareText();
+    shareStatus.textContent = '已选中文字，请用系统“复制”或 Ctrl/Cmd+C；尚未确认复制成功。';
+    shareStatus.dataset.result = 'selected';
+  });
+  copyShareBtn.addEventListener('click', async function () {
+    const session = shareSession;
+    const text = shareText.value;
+    copyShareBtn.disabled = true;
+    shareStatus.dataset.result = 'pending';
+    shareStatus.textContent = '正在请求剪贴板权限…';
+    try {
+      if (!navigator.clipboard || !window.isSecureContext) throw new Error('clipboard unavailable');
+      await navigator.clipboard.writeText(text);
+      if (session !== shareSession || !shareDialog.open) return;
+      shareStatus.textContent = '已复制到剪贴板。尚未发送；可自行粘贴给朋友。';
+      shareStatus.dataset.result = 'copied';
+    } catch (error) {
+      if (session !== shareSession || !shareDialog.open) return;
+      shareStatus.textContent = '未能自动复制。请长按文本框内文字，或点击“全选文字”后使用系统复制。';
+      shareStatus.dataset.result = 'manual';
+      selectShareText();
+    } finally {
+      if (session === shareSession) copyShareBtn.disabled = false;
+    }
+  });
+
+  // Optional external asset: only show a decoded image, never a broken or invented QR.
+  if (reviewMode && /^https?:$/.test(location.protocol)) {
+    const qr = $('#entryQrImage');
+    qr.addEventListener('load', function () {
+      if (!qr.naturalWidth) return;
+      qr.hidden = false;
+      $('#entryQrPlaceholder').hidden = true;
+      $('#entryQr').classList.add('has-qr');
+      $('#entryQr').setAttribute('aria-label', '外部课程演示入口二维码');
+      $('#entryQrStatus').textContent = '入口码已载入 · 请另行验证扫码';
+    });
+    qr.addEventListener('error', function () {
+      qr.hidden = true;
+      qr.removeAttribute('src');
+      $('#entryQrStatus').textContent = '入口码未提供 · 可用模拟入口';
+    }, { once: true });
+    qr.src = './entry-qr.svg';
+  }
+  const screens = $$('.screen');
+  const backBtn = $('#backBtn');
+  const pageLabel = $('#pageLabel');
+  const utilityPage = $('#utilityPage');
+  const stepper = $('#stepper');
+  const statePage = $('#statePage');
+  const stateDetail = $('#stateDetail');
+  const live = $('#liveRegion');
+
+  const tagCard = $('#tagCard');
+  const tagFlip = $('#tagFlip');
+  const scanBtn = $('#scanBtn');
+  const artStage = $('#artStage');
+  const artToggle = $('#artToggle');
+  const artCorner = $('#artCorner');
+  const creatorToggle = $('#creatorToggle');
+  const creatorPlaceholder = $('#creatorPlaceholder');
+  const creatorCard = $('#creatorCard');
+  const toLayoutBtn = $('#toLayoutBtn');
+
+  const layoutOptions = $$('.layout-option');
+  const layoutRadios = $$('input[name="teeLayout"]');
+  const selectionSummary = $('#selectionSummary');
+  const selectionText = $('#selectionText');
+  const continueLayoutBtn = $('#continueLayoutBtn');
+  const layoutHint = $('#layoutHint');
+
+  const confirmTee = $('#confirmTee');
+  const confirmTeeUse = $('#confirmTeeUse');
+  const confirmPrint = $('#confirmPrint');
+  const confirmLayout = $('#confirmLayout');
+  const confirmLayoutRow = $('#confirmLayoutRow');
+  const submitBtn = $('#submitBtn');
+  const reselectFromConfirm = $('#reselectFromConfirm');
+
+  const demoId = $('#demoId');
+  const completeLayout = $('#completeLayout');
+  const chooseAgainBtn = $('#chooseAgainBtn');
+  const backToArtBtn = $('#backToArtBtn');
+  const startOverBtn = $('#startOverBtn');
+  const errorLayout = $('#errorLayout');
+  const retryLoadBtn = $('#retryLoadBtn');
+  const backTagBtn = $('#backTagBtn');
+  const retrySubmitBtn = $('#retrySubmitBtn');
+  const backConfirmBtn = $('#backConfirmBtn');
+
+  const failLoadToggle = $('#failLoadToggle');
+  const failSubmitToggle = $('#failSubmitToggle');
+  const controlNote = $('#controlNote');
+  const resetTopBtn = $('#resetTopBtn');
+  const resetDialog = $('#resetDialog');
+  const cancelResetBtn = $('#cancelResetBtn');
+  const confirmResetBtn = $('#confirmResetBtn');
+  const fidelityButtons = $$('.fidelity-btn');
+  const journeySteps = $$('.journey-step');
+
+  const layoutLabels = {
+    chest: '小幅胸前',
+    full: '大幅背面'
+  };
+
+  const screenMeta = {
+    tag: {
+      page: 'D01', label: '吊牌', step: 0, back: null,
+      detail: '等待模拟扫码'
+    },
+    loading: {
+      page: 'P01', label: '加载', step: 0, back: 'tag',
+      detail: '准备内联作品 · 本地状态延迟'
+    },
+    art: {
+      page: 'P02', label: '作品', step: 1, back: 'tag',
+      detail: '完整作品已展开 · 创作者资料未授权'
+    },
+    layout: {
+      page: 'P03', label: '穿法', step: 2, back: 'art',
+      detail: '等待选择版式'
+    },
+    confirm: {
+      page: 'P04', label: '确认', step: 2, back: 'layout',
+      detail: '意向草稿已就绪 · 尚未提交'
+    },
+    submitting: {
+      page: 'P05', label: '提交中', step: 2, back: null,
+      detail: '本地模拟记录中 · 无提交接口'
+    },
+    complete: {
+      page: 'P06', label: '完成', step: 3, back: 'art',
+      detail: '演示已完成 · 回执仅本地生成'
+    },
+    errorLoad: {
+      page: 'E01', label: '加载失败', step: 0, back: 'tag',
+      detail: '模拟加载失败 · 可重试'
+    },
+    errorSubmit: {
+      page: 'E02', label: '提交失败', step: 2, back: 'confirm',
+      detail: '模拟提交失败 · 版式已保留'
+    }
+  };
+
+  if (!reviewMode) {
+    screenMeta.loading.back = null;
+    screenMeta.art.back = null;
+    screenMeta.errorLoad.back = null;
+    $('.skip-link').href = '#artTitle';
+    $('.skip-link').textContent = '跳到作品入口';
+    backTagBtn.textContent = '重新打开作品';
+    $('#resetTitle').textContent = '重新开始看画？';
+    $('#resetDialog .dialog-inner > p:not(.dialog-kicker)').textContent = '这会清除当前版式、授权占位展开状态与本地意向回执，重新打开作品。';
+  }
+
+  const state = {
+    screen: reviewMode ? 'tag' : 'loading',
+    fidelity: 'high',
+    tagSide: 'front',
+    layout: null,
+    artRevealed: false,
+    creatorOpen: false,
+    failLoad: false,
+    failSubmit: false,
+    demoSeq: 0,
+    demoReceipt: ''
+  };
+
+  const timers = {
+    load: null,
+    submit: null,
+    autoReveal: null
+  };
+
+  function announce(message) {
+    if (!live) return;
+    live.textContent = '';
+    window.setTimeout(function () {
+      live.textContent = message;
+    }, 30);
+  }
+
+  function pagePrefix() {
+    return state.fidelity === 'low' ? 'LD-' : '';
+  }
+
+  function currentMeta() {
+    return screenMeta[state.screen] || screenMeta.tag;
+  }
+
+  function currentPageText() {
+    const meta = currentMeta();
+    return pagePrefix() + meta.page + ' · ' + meta.label;
+  }
+
+  function clearTimer(name) {
+    if (timers[name]) {
+      window.clearTimeout(timers[name]);
+      timers[name] = null;
+    }
+  }
+
+  function clearFlowTimers() {
+    clearTimer('load');
+    clearTimer('submit');
+    clearTimer('autoReveal');
+    phone.removeAttribute('aria-busy');
+  }
+
+  function updatePageChrome() {
+    const meta = currentMeta();
+    const label = pagePrefix() + meta.page + ' · ' + meta.label;
+    pageLabel.textContent = pagePrefix() + meta.page;
+    utilityPage.textContent = pagePrefix() + meta.page;
+    statePage.textContent = label;
+    stateDetail.textContent = detailForCurrent();
+    stepper.setAttribute('aria-label', '流程进度：第' + (meta.step + 1) + '步，共4步');
+
+    $$('i', stepper).forEach(function (dot, index) {
+      dot.classList.toggle('is-on', index <= meta.step);
+      dot.classList.toggle('is-current', index === meta.step);
+    });
+
+    journeySteps.forEach(function (step, index) {
+      const isCurrent = index === meta.step;
+      step.classList.toggle('is-current', isCurrent);
+      if (isCurrent) step.setAttribute('aria-current', 'step');
+      else step.removeAttribute('aria-current');
+    });
+  }
+
+  function detailForCurrent() {
+    const meta = currentMeta();
+    if (state.screen === 'layout') {
+      return state.layout ? '已选：' + layoutLabels[state.layout] : '等待选择版式 · 没有默认项';
+    }
+    if (state.screen === 'confirm') {
+      return '已选：' + (layoutLabels[state.layout] || '未选择') + ' · 尚未提交';
+    }
+    if (state.screen === 'complete') {
+      return '演示已完成 · ' + (layoutLabels[state.layout] || '版式未选') + ' · 回执仅本地生成';
+    }
+    if (state.screen === 'art') {
+      const artState = state.artRevealed ? '完整作品已展开' : '只看吊牌局部';
+      return artState + ' · ' + (state.creatorOpen ? '查看授权后版式占位' : '创作者资料未授权');
+    }
+    if (state.screen === 'errorSubmit') {
+      return '模拟提交失败 · 已保留 ' + (layoutLabels[state.layout] || '已选版式');
+    }
+    return meta.detail;
+  }
+
+  function setBackButton() {
+    const meta = currentMeta();
+    const canGoBack = Boolean(meta.back);
+    backBtn.classList.toggle('is-hidden', !canGoBack);
+    backBtn.disabled = !canGoBack || state.screen === 'submitting';
+    backBtn.setAttribute('aria-hidden', String(!canGoBack));
+  }
+
+  function goTo(name, options) {
+    if (!screenMeta[name]) return;
+    const opts = options || {};
+    state.screen = name;
+    phone.dataset.screen = name;
+    phone.dataset.page = screenMeta[name].page;
+
+    screens.forEach(function (screen) {
+      const active = screen.dataset.screen === name;
+      screen.hidden = !active;
+      screen.classList.toggle('is-active', active);
+      if (active) {
+        const scroller = $('.screen-scroll', screen);
+        if (scroller) scroller.scrollTop = 0;
+      }
+    });
+
+    updatePageChrome();
+    setBackButton();
+
+    const activeScreen = $('.screen[data-screen="' + name + '"]');
+    const heading = activeScreen ? $('[data-screen-heading], .screen-heading', activeScreen) : null;
+    if (heading) {
+      window.setTimeout(function () {
+        try { heading.focus({ preventScroll: true }); } catch (error) { heading.focus(); }
+      }, 40);
+    }
+
+    if (opts.announce) announce(opts.announce);
+    else announce(currentPageText());
+
+    if (name === 'art') {
+      applyReveal(state.artRevealed, false);
+      if (!state.artRevealed) {
+        clearTimer('autoReveal');
+        timers.autoReveal = window.setTimeout(function () {
+          if (state.screen === 'art' && !state.artRevealed) {
+            setRevealed(true, true);
+          }
+        }, 620);
+      }
+    }
+  }
+
+  function setFidelity(mode, shouldAnnounce) {
+    if (mode !== 'high' && mode !== 'low') return;
+    state.fidelity = mode;
+    phone.dataset.fidelity = mode;
+    phone.classList.toggle('is-low-fi', mode === 'low');
+    fidelityButtons.forEach(function (button) {
+      button.setAttribute('aria-pressed', String(button.dataset.fidelity === mode));
+    });
+    updatePageChrome();
+    if (shouldAnnounce) {
+      announce('已切换为' + (mode === 'high' ? '高保真' : '低保真灰阶线框') + '，当前 ' + currentPageText());
+    }
+  }
+
+  function setTagSide(side, shouldAnnounce) {
+    state.tagSide = side === 'back' ? 'back' : 'front';
+    tagCard.dataset.side = state.tagSide;
+
+    $$('.tag-face', tagCard).forEach(function (face) {
+      const active = face.dataset.face === state.tagSide;
+      face.classList.toggle('is-active', active);
+      face.setAttribute('aria-hidden', String(!active));
+      if (active) face.removeAttribute('inert');
+      else face.setAttribute('inert', '');
+    });
+
+    tagFlip.setAttribute('aria-pressed', String(state.tagSide === 'back'));
+    tagFlip.textContent = state.tagSide === 'front' ? '翻到背面' : '翻回正面';
+    if (shouldAnnounce) {
+      announce(state.tagSide === 'front' ? '已翻到吊牌正面' : '已翻到吊牌背面');
+    }
+  }
+
+  function applyReveal(revealed, shouldAnnounce) {
+    state.artRevealed = Boolean(revealed);
+    artStage.classList.toggle('is-revealed', state.artRevealed);
+    artToggle.setAttribute('aria-pressed', String(state.artRevealed));
+    artToggle.textContent = state.artRevealed ? '收起，只看那一角' : '展开整幅画';
+    artCorner.textContent = state.artRevealed ? '完整作品' : '吊牌局部';
+    updatePageChrome();
+    if (shouldAnnounce) {
+      announce(state.artRevealed ? '完整作品已展开' : '已收起，只看吊牌局部');
+    }
+  }
+
+  function setRevealed(revealed, shouldAnnounce) {
+    if (revealed) clearTimer('autoReveal');
+    applyReveal(revealed, shouldAnnounce);
+  }
+
+  function openCreator(open, shouldAnnounce) {
+    state.creatorOpen = Boolean(open);
+    creatorPlaceholder.hidden = !state.creatorOpen;
+    creatorCard.classList.toggle('is-open', state.creatorOpen);
+    creatorToggle.setAttribute('aria-expanded', String(state.creatorOpen));
+    creatorToggle.textContent = state.creatorOpen ? '收起授权后版式' : '查看授权后版式（占位）';
+    updatePageChrome();
+    if (shouldAnnounce) {
+      announce(state.creatorOpen ? '已展开授权后版式占位。这不是真实授权。' : '已收起授权后版式占位');
+    }
+  }
+
+  function applyLayout(value, shouldAnnounce) {
+    const valid = value === 'chest' || value === 'full' ? value : null;
+    state.layout = valid;
+
+    layoutRadios.forEach(function (radio) {
+      radio.checked = radio.value === valid;
+    });
+
+    layoutOptions.forEach(function (option) {
+      option.classList.toggle('is-selected', option.dataset.layout === valid);
+    });
+
+    const hasSelection = Boolean(valid);
+    selectionSummary.hidden = !hasSelection;
+    if (hasSelection) selectionText.textContent = layoutLabels[valid];
+    continueLayoutBtn.disabled = !hasSelection;
+    layoutHint.textContent = hasSelection
+      ? '已选择：' + layoutLabels[valid] + '。继续即可确认。'
+      : '请先选择一种版式';
+
+    if (hasSelection) {
+      const printViewBox = valid === 'chest' ? '300 68 280 250' : '0 0 600 760';
+      confirmTee.dataset.print = valid;
+      confirmTeeUse.setAttribute('href', valid === 'chest' ? '#tee-front' : '#tee-back');
+      confirmPrint.setAttribute('viewBox', printViewBox);
+      confirmLayout.textContent = layoutLabels[valid];
+      confirmLayoutRow.textContent = layoutLabels[valid];
+      completeLayout.textContent = layoutLabels[valid];
+      errorLayout.textContent = layoutLabels[valid];
+    }
+
+    updatePageChrome();
+    if (shouldAnnounce && hasSelection) {
+      announce('已选择' + layoutLabels[valid]);
+    }
+  }
+
+  function makeReceipt() {
+    state.demoSeq += 1;
+    const now = new Date();
+    const yyyy = String(now.getFullYear());
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const dd = String(now.getDate()).padStart(2, '0');
+    state.demoReceipt = 'DEMO-' + yyyy + mm + dd + '-' + String(state.demoSeq).padStart(3, '0');
+    demoId.textContent = state.demoReceipt;
+  }
+
+  function startLoad(forceSuccess) {
+    clearFlowTimers();
+    const shouldFail = forceSuccess ? false : state.failLoad;
+    if (state.failLoad) {
+      state.failLoad = false;
+      failLoadToggle.checked = false;
+    }
+
+    setTagSide('front', false);
+    setRevealed(false, false);
+    openCreator(false, false);
+    goTo('loading', { announce: '正在打开作品' });
+    phone.setAttribute('aria-busy', 'true');
+
+    timers.load = window.setTimeout(function () {
+      phone.removeAttribute('aria-busy');
+      timers.load = null;
+      if (shouldFail) {
+        controlNote.textContent = '已模拟加载失败；重试会成功一次。';
+        controlNote.classList.add('is-armed');
+        goTo('errorLoad', { announce: '模拟加载失败。可以选择重试或回到吊牌。' });
+      } else {
+        controlNote.textContent = '加载成功。创作者资料仍处于未授权状态。';
+        controlNote.classList.remove('is-armed');
+        setRevealed(false, false);
+        goTo('art', { announce: '作品已打开，正在展开完整画作。' });
+      }
+    }, 1050);
+  }
+
+  function startSubmit(forceSuccess) {
+    clearTimer('submit');
+    const shouldFail = forceSuccess ? false : state.failSubmit;
+    if (state.failSubmit) {
+      state.failSubmit = false;
+      failSubmitToggle.checked = false;
+    }
+
+    goTo('submitting', { announce: '正在本地模拟提交' });
+    phone.setAttribute('aria-busy', 'true');
+
+    timers.submit = window.setTimeout(function () {
+      phone.removeAttribute('aria-busy');
+      timers.submit = null;
+      if (shouldFail) {
+        controlNote.textContent = '已模拟提交失败；版式保留，重试会成功一次。';
+        controlNote.classList.add('is-armed');
+        announce('模拟提交失败。版式已保留，可以重试。');
+        goTo('errorSubmit', { announce: '模拟提交失败。你选的版式仍然保留。' });
+      } else {
+        controlNote.textContent = '演示完成。没有扣款、没有订单、没有数据发送。';
+        controlNote.classList.remove('is-armed');
+        makeReceipt();
+        goTo('complete', { announce: '本地意向已确认，仅保留在当前页。你可以分享课程构想。' });
+      }
+    }, 1250);
+  }
+
+  function openResetDialog() {
+    if (typeof resetDialog.showModal === 'function') {
+      if (!resetDialog.open) resetDialog.showModal();
+    } else {
+      resetDialog.setAttribute('open', '');
+    }
+  }
+
+  function resetAll() {
+    clearFlowTimers();
+    state.layout = null;
+    state.artRevealed = false;
+    state.creatorOpen = false;
+    state.failLoad = false;
+    state.failSubmit = false;
+    state.demoReceipt = '';
+    state.demoSeq = 0;
+    state.tagSide = 'front';
+
+    failLoadToggle.checked = false;
+    failSubmitToggle.checked = false;
+    controlNote.textContent = '失败开关只影响下一次对应步骤；重试会成功一次，选择不受影响。';
+    controlNote.classList.remove('is-armed');
+
+    applyLayout(null, false);
+    openCreator(false, false);
+    setRevealed(false, false);
+    setTagSide('front', false);
+    demoId.textContent = 'DEMO-00000000-000';
+
+    if (reviewMode) goTo('tag', { announce: '已重置，回到吊牌。' });
+    else startLoad(false);
+  }
+
+  function goBack() {
+    if (state.screen === 'submitting') return;
+    if (state.screen === 'loading') {
+      clearTimer('load');
+      phone.removeAttribute('aria-busy');
+      goTo('tag', { announce: '已取消打开，回到吊牌。' });
+      return;
+    }
+    const back = currentMeta().back;
+    if (back) {
+      goTo(back, { announce: '已返回' + (screenMeta[back] ? screenMeta[back].label : '上一步') });
+    }
+  }
+
+  /* events */
+  scanBtn.addEventListener('click', function () {
+    startLoad(false);
+  });
+
+  backBtn.addEventListener('click', goBack);
+
+  tagFlip.addEventListener('click', function () {
+    setTagSide(state.tagSide === 'front' ? 'back' : 'front', true);
+  });
+
+  artToggle.addEventListener('click', function () {
+    setRevealed(!state.artRevealed, true);
+  });
+
+  creatorToggle.addEventListener('click', function () {
+    openCreator(!state.creatorOpen, true);
+  });
+
+  toLayoutBtn.addEventListener('click', function () {
+    goTo('layout', { announce: '选择 T 恤版式' });
+  });
+
+  layoutRadios.forEach(function (radio) {
+    radio.addEventListener('change', function () {
+      if (radio.checked) applyLayout(radio.value, true);
+    });
+  });
+
+  continueLayoutBtn.addEventListener('click', function () {
+    if (!state.layout) {
+      layoutHint.textContent = '请先选择一种版式';
+      announce('请先选择一种版式');
+      return;
+    }
+    goTo('confirm', { announce: '进入意向确认' });
+  });
+
+  submitBtn.addEventListener('click', function () {
+    if (state.screen === 'submitting') return;
+    if (!state.layout) {
+      goTo('layout', { announce: '请先选择一种版式' });
+      return;
+    }
+    startSubmit(false);
+  });
+
+  reselectFromConfirm.addEventListener('click', function () {
+    goTo('layout', { announce: '回到版式选择' });
+  });
+
+  chooseAgainBtn.addEventListener('click', function () {
+    goTo('layout', { announce: '重新选择穿法' });
+  });
+
+  backToArtBtn.addEventListener('click', function () {
+    goTo('art', { announce: '再看一眼这幅画' });
+  });
+
+  startOverBtn.addEventListener('click', openResetDialog);
+  resetTopBtn.addEventListener('click', openResetDialog);
+
+  retryLoadBtn.addEventListener('click', function () {
+    startLoad(true);
+  });
+
+  backTagBtn.addEventListener('click', function () {
+    clearFlowTimers();
+    if (reviewMode) goTo('tag', { announce: '回到吊牌' });
+    else startLoad(true);
+  });
+
+  retrySubmitBtn.addEventListener('click', function () {
+    startSubmit(true);
+  });
+
+  backConfirmBtn.addEventListener('click', function () {
+    clearTimer('submit');
+    phone.removeAttribute('aria-busy');
+    goTo('confirm', { announce: '回到确认页，版式仍然保留。' });
+  });
+
+  failLoadToggle.addEventListener('change', function () {
+    state.failLoad = failLoadToggle.checked;
+    controlNote.textContent = state.failLoad
+      ? '已准备：下一次模拟扫码会加载失败。'
+      : '已取消加载失败准备。';
+    controlNote.classList.toggle('is-armed', state.failLoad);
+  });
+
+  failSubmitToggle.addEventListener('change', function () {
+    state.failSubmit = failSubmitToggle.checked;
+    controlNote.textContent = state.failSubmit
+      ? '已准备：下一次提交会模拟失败。'
+      : '已取消提交失败准备。';
+    controlNote.classList.toggle('is-armed', state.failSubmit);
+  });
+
+  fidelityButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      setFidelity(button.dataset.fidelity, true);
+    });
+  });
+
+
+  cancelResetBtn.addEventListener('click', function () {
+    resetDialog.close();
+  });
+
+  confirmResetBtn.addEventListener('click', function () {
+    resetDialog.close();
+    resetAll();
+  });
+
+  resetDialog.addEventListener('click', function (event) {
+    if (event.target === resetDialog) resetDialog.close();
+  });
+
+  resetDialog.addEventListener('close', function () {
+    if (state.screen === 'tag') {
+      window.setTimeout(function () {
+        const heading = $('#tagTitle');
+        if (heading) heading.focus({ preventScroll: true });
+      }, 30);
+    }
+  });
+
+  /* boot: direct entry never traverses the reviewer-only D01. */
+  applyLayout(null, false);
+  setTagSide('front', false);
+  setFidelity('high', false);
+  if (reviewMode) goTo('tag');
+  else startLoad(false);
+
+  window.addEventListener('pagehide', clearFlowTimers);
+  window.addEventListener('pageshow', function (event) {
+    if (!event.persisted) return;
+    if (state.screen === 'loading') startLoad(false);
+    else if (state.screen === 'submitting') goTo('confirm', { announce: '已恢复确认页，请重新确认本地意向。' });
+  });
+}());
+</script>
+</body>
+</html>
