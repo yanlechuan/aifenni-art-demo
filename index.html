@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
-<title>爱分你 · 把一幅画穿出去｜课程概念</title>
+<title>爱分你 · 公益艺术传播｜课程概念 20261104-r3</title>
+<meta name="prototype-version" content="20261104-r3">
 <style>
   :root{
     --paper:#F4EDE2;
@@ -1850,7 +1851,13 @@
   .demo-ribbon{font-size:11px;min-height:34px;flex-wrap:wrap;}
   .ribbon-detail{border:0;background:transparent;color:inherit;text-decoration:underline;min-height:32px;padding:0 4px;font-size:11px;}
   .entry-intro{margin-bottom:14px;}
-  .entry-intro .screen-heading{font-size:25px;}
+  .entry-intro .screen-heading{font-size:23px;}
+  .entry-boundary{margin-top:6px;font-size:11px;line-height:1.6;color:var(--muted);}
+  .prototype-version{font:8px/1.3 var(--mono);color:var(--muted);}
+  html[data-fidelity="low"] .reset-dialog{--surface:#fff;--ink:#222;--muted:#555;--line:#aaa;--line-strong:#888;--coral-deep:#222;--white:#fff;border-radius:0;}
+  html[data-fidelity="low"] ::selection{background:#555;color:#fff;}
+  html[data-fidelity="low"] .reset-dialog .btn{border-radius:0;box-shadow:none;}
+  html[data-fidelity="low"] .reset-dialog .btn-primary{background:#eee;color:#222;border:1px solid #333;}
   .entry-identity{font-size:12px;color:var(--coral-deep);font-weight:600;}
   .entry-intro .screen-lede{font-size:12px;}
   .entry-links{display:flex;gap:14px;flex-wrap:wrap;}
@@ -1873,6 +1880,16 @@
   .next-step h3{font-size:14px;margin-bottom:5px;}
   .next-step p{font-size:12px;color:var(--muted);}
   .secondary-action{width:100%;margin-top:4px;}
+  .participation-choices{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .participation-choice{border:1px solid var(--line-strong);border-radius:7px;padding:12px 10px;min-height:84px;text-align:left;background:var(--white);color:var(--ink);display:flex;flex-direction:column;justify-content:center;gap:5px;}
+  .participation-choice strong{font-size:14px;line-height:1.45;}
+  .participation-choice span{font-size:11px;line-height:1.5;color:var(--muted);}
+  .participation-choice:hover{border-color:var(--coral-deep);background:var(--surface-2);}
+  .path-caption{font-size:11px;color:var(--muted);margin-bottom:7px;}
+  .side-badge{display:block;align-self:flex-start;margin:22px 2px 0;padding:3px 7px;border:1px solid var(--line-strong);border-radius:3px;font-size:11px;font-weight:600;background:var(--white);}
+  .layout-explainer{margin-top:12px;padding:10px 12px;border-left:3px solid var(--sage);background:var(--surface-2);font-size:12px;line-height:1.7;color:var(--ink-soft);}
+  .direction-summary{font-size:12px;line-height:1.7;color:var(--ink-soft);margin-top:7px;}
+  @media(max-width:340px){.participation-choice{padding:9px 7px;}.participation-choice strong{font-size:12px;}.participation-choice span{font-size:10px;}}
   @media(max-height:650px){.art-to-tee .art-stage,.art-to-tee .art-stage.is-revealed{height:150px;}.entry-intro{margin-bottom:8px;}}
 </style>
 <script>document.documentElement.dataset.mode = new URLSearchParams(location.search).get('mode') === 'review' ? 'review' : 'user';</script>
@@ -1894,7 +1911,7 @@
     </div>
   </div>
   <div class="header-meta">
-    <span class="pill"><span class="pill-dot"></span>交互原型 v1.0</span>
+    <span class="pill"><span class="pill-dot"></span>交互原型 20261104-r3</span>
     <span class="header-note">375 px · 单文件 · 可离线</span>
   </div>
 </header>
@@ -2002,7 +2019,7 @@
             <rect x="5" y="10" width="14" height="10" rx="1"></rect>
             <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
           </svg>
-          <span>课程演示 · 无捐赠 / 交易 · 意向仅存本页</span>
+          <span>爱分你 · 公益艺术入口</span>
           <button type="button" class="ribbon-detail" data-open-trust>查看声明</button>
         </div>
 
@@ -2096,9 +2113,10 @@
             <div class="screen-scroll">
               <div class="screen-inner">
                 <div class="entry-intro">
-                  <p class="entry-identity" id="entryIdentity">爱分你公益产品入口 · 课程概念</p>
-                  <h2 class="screen-heading" id="artTitle" tabindex="-1">让一幅画，走进日常。</h2>
-                  <p class="screen-lede" id="designRelation">设计构想：把作品的一角或全貌放上 T 恤，让穿着与分享成为认识作品的入口。</p>
+                  <p class="entry-identity" id="entryIdentity">吊牌作品 ·《潮汐留声》</p>
+                  <h2 class="screen-heading" id="artTitle" tabindex="-1">先看画，再决定如何参与。</h2>
+                  <p class="screen-lede" id="designRelation">从吊牌一角看见完整作品；可直接分享，也可选择 T 恤穿法。</p>
+                  <p class="entry-boundary">课程演示：不发生真实交易或捐赠。授权与受益信息见「查看声明」与创作者区域。</p>
                   <div class="entry-links"><button type="button" class="link-button" id="trustBtn" data-open-trust>这是什么项目？查看事实与边界</button></div>
                 </div>
                 <div class="art-to-tee" aria-label="同一幅示意作品进入T恤的设计关系">
@@ -2166,8 +2184,11 @@
               </div>
             </div>
             <div class="screen-actions">
-              <button type="button" class="btn btn-primary" id="toLayoutBtn">看看两种穿法</button>
-              <button type="button" class="text-button secondary-action" id="shareArtBtn" data-open-share>不选版式，分享课程构想</button>
+              <p class="path-caption" id="participationLabel">你想怎样继续？两条路径都可以</p>
+              <div class="participation-choices" role="group" aria-labelledby="participationLabel">
+                <button type="button" class="participation-choice" id="shareArtBtn" data-open-share><strong>分享作品与构想</strong><span>无需选版式 · 附现成文案</span></button>
+                <button type="button" class="participation-choice" id="toLayoutBtn"><strong>先看看 T 恤穿法</strong><span>自选版式 · 意向仅存本页</span></button>
+              </div>
             </div>
           </section>
 
@@ -2183,7 +2204,8 @@
                   <legend class="sr-only">选择 T 恤版式</legend>
                   <div class="layout-grid">
                     <label class="layout-option" data-layout="chest">
-                      <input class="layout-radio" type="radio" name="teeLayout" value="chest">
+                      <input class="layout-radio" type="radio" name="teeLayout" value="chest" aria-describedby="layoutDifference">
+                      <span class="side-badge">正面 FRONT</span>
                       <span class="selected-label" aria-hidden="true">已选</span>
                       <span class="option-check" aria-hidden="true"></span>
                       <span class="tee-widget" data-print="chest" aria-hidden="true">
@@ -2197,7 +2219,8 @@
                     </label>
 
                     <label class="layout-option" data-layout="full">
-                      <input class="layout-radio" type="radio" name="teeLayout" value="full">
+                      <input class="layout-radio" type="radio" name="teeLayout" value="full" aria-describedby="layoutDifference">
+                      <span class="side-badge">背面 BACK</span>
                       <span class="selected-label" aria-hidden="true">已选</span>
                       <span class="option-check" aria-hidden="true"></span>
                       <span class="tee-widget" data-print="full" aria-hidden="true">
@@ -2212,6 +2235,7 @@
                   </div>
                 </fieldset>
 
+                <p class="layout-explainer" id="layoutDifference"><strong>区别不只是大小，也在正反面。</strong><br>小幅胸前：衣服正面，呈现画作局部。<br>大幅背面：衣服背面，呈现完整画作。</p>
                 <p class="selection-summary" id="selectionSummary" hidden>
                   <span>SELECTED</span>
                   <strong id="selectionText"></strong>
@@ -2241,6 +2265,7 @@
                   <div>
                     <p class="summary-kicker">你选的</p>
                     <p class="summary-title">《潮汐留声》<span id="confirmLayout">小幅胸前</span></p>
+                    <p class="direction-summary" id="confirmDirection">衣服正面 · 画作局部</p>
                     <p class="summary-meta">棉白演示款<br>尺码与价格未定</p>
                   </div>
                 </div>
@@ -2269,7 +2294,7 @@
             <div class="screen-scroll">
               <div class="spinner" aria-hidden="true"></div>
               <p class="screen-eyebrow">P05 · 提交中</p>
-              <h2 class="screen-heading" id="submittingTitle" tabindex="-1">正在模拟提交。</h2>
+              <h2 class="screen-heading" id="submittingTitle" tabindex="-1">正在记录你的选择。</h2>
               <p class="screen-lede">正在记录你选择的穿法，请稍候。</p>
               <span class="local-chip">本地状态 · 无提交接口</span>
             </div>
@@ -2592,7 +2617,7 @@
     $('#shareEnvironment').textContent = url
       ? '可复制当前 HTTPS 用户入口（不含评审参数）。可达性取决于当前托管服务，复制后由你决定是否发送。'
       : '当前是本地文件、局域网或 HTTP 环境：仅提供课程说明，不把本地地址伪装为可分享公网链接。';
-    shareText.value = '我在看「爱分你公益产品入口」课程概念：从一幅示意画到 T 恤，探索作品进入日常的方式。欢迎一起看看、讨论。课程演示，无捐赠、支付或订单；不代表已获项目认证或已资助创作者。' + (url ? '\n课程演示入口：' + url : '\n当前未提供可分享的 HTTPS 入口，可先分享这段说明。');
+    shareText.value = '我在看一个「把一幅画穿出去」的课程构想：从吊牌一角打开完整作品，再看看它呈现在 T 恤上的样子。欢迎一起看看：' + (url ? '\n课程演示入口：' + url : '\n当前未提供可分享的 HTTPS 入口，可先分享这段说明。');
     shareStatus.textContent = '尚未复制或发送。';
     shareStatus.dataset.result = 'idle';
     openModal(shareDialog);
@@ -2911,6 +2936,7 @@
     if (mode !== 'high' && mode !== 'low') return;
     state.fidelity = mode;
     phone.dataset.fidelity = mode;
+    document.documentElement.dataset.fidelity = mode;
     phone.classList.toggle('is-low-fi', mode === 'low');
     fidelityButtons.forEach(function (button) {
       button.setAttribute('aria-pressed', String(button.dataset.fidelity === mode));
@@ -2996,6 +3022,7 @@
       confirmPrint.setAttribute('viewBox', printViewBox);
       confirmLayout.textContent = layoutLabels[valid];
       confirmLayoutRow.textContent = layoutLabels[valid];
+      $('#confirmDirection').textContent = valid === 'chest' ? '衣服正面 · 画作局部' : '衣服背面 · 完整画作';
       completeLayout.textContent = layoutLabels[valid];
       errorLayout.textContent = layoutLabels[valid];
     }
